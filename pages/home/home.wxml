@@ -1,0 +1,23 @@
+<!--pages/home/home.wxml-->
+<view style="height: 900rpx;display: flex;flex-direction: column;">
+<swiper style="flex: 1;" indicator-dots="{{true}}" indicator-color="rgba(204,204,204,.3)" 	indicator-active-color="rgba(40, 117, 232,1)" autoplay="{{true}}" 	interval="{{3000}}" circular>
+    <block wx:for="{{swiperItem}}" wx:key="index">
+        <swiper-item>
+            <view class="swiper-item" style="background-color: {{item.backgroundColor}};">
+                <text class="title">{{item.title}}</text>
+                <view>
+                    <image src="{{item.img}}" style="width: 500rpx;height:450rpx;margin: 40rpx auto;"></image>
+                </view>
+                <!-- <text class="clickTips">点击查看问卷模板</text> -->
+                <view style="margin-left: 350rpx;" hidden="{{clickHide}}">
+                    <image src="../../assets/image/point.png" style="width: 100rpx;" mode="widthFix"></image>
+                </view>
+            </view>
+        </swiper-item>
+    </block>
+</swiper>
+</view>
+
+
+<view class="clickTips" bindtap="checkToken" wx:if="{{buttonTipShow}}">{{buttonTip}}</view>
+<!-- <button plain="true" type="primary" style="margin-top: 15rpx;min-width: 500rpx;" bindtap="checkToken">{{buttonTip}}</button> -->

@@ -1,0 +1,45 @@
+{
+    "pages": [
+        "pages/home/home",
+        "pages/index/index",
+        "pages/record/record",
+        "pages/person/person"
+    ],
+    "tabBar": {
+        "borderStyle": "white",
+        "backgroundColor": "#F7F7FA",
+        "color": "#7F8389",
+        "selectedColor": "#2875E8",
+        "list": [
+            {
+                "pagePath": "pages/home/home",
+                "text": "首页",
+                "iconPath": "assets/image/home.png",
+                "selectedIconPath": "assets/image/home_on.png"
+            },
+            {
+                "pagePath": "pages/record/record",
+                "text": "填表记录",
+                "iconPath": "assets/image/entries.png",
+                "selectedIconPath": "assets/image/entries_on.png"
+            },
+            {
+                "pagePath": "pages/person/person",
+                "text": "个人账户",
+                "iconPath": "assets/image/profile.png",
+                "selectedIconPath": "assets/image/profile_on.png"
+            }
+        ]
+    },
+    "subPackages": [],
+    "window": {
+        "navigationBarTitleText": "软件工程-金数据",
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#2875E8",
+        "navigationBarTextStyle": "white",
+        "backgroundColor": "#EFEFF4"
+    },
+    "style": "v2",
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
+}

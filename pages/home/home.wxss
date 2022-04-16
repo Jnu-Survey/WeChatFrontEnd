@@ -1,0 +1,28 @@
+/* pages/home/home.wxss */
+.swiper-item {
+    display: flex;
+    flex-direction: column;
+    width: 650rpx;
+    margin: 40rpx auto;
+    padding: 50rpx 75rpx;
+    box-sizing: border-box;
+    border-radius: 40rpx;
+    box-shadow: 10px 10px 8px #ccc;
+}
+
+.title {
+    color: white;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.clickTips {
+    margin: 15rpx 60rpx 0 60rpx;
+    box-sizing: border-box;
+    text-align: center;
+    color: white;
+    font-weight: 500;
+    padding: 30rpx;
+    background-color: rgb(6, 174, 86);
+    border-radius: 50rpx;
+}
