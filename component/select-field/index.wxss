@@ -1,0 +1,98 @@
+
+.container {
+    width: 100%;
+}
+
+.bg-box {
+    height: 100%;
+    background-color: rgb(148, 149, 151);
+    left: 0;
+    right: 0;
+    top: 0;
+    z-index: 9;
+}
+
+.bg-box,.fields-box {
+    bottom: 0;
+    position: fixed;
+}
+
+.fields-box {
+    width: 100%;
+    height: 820rpx;
+    box-sizing: border-box;
+    background: #fff;
+    border-radius: 20rpx 20rpx 0 0;
+    z-index: 10;
+}
+
+.classifyTag {
+    height: 120rpx;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Tags {
+    padding: 20rpx 30rpx;
+    text-align: center;
+    background-color: rgb(245,245,245);
+    border-radius: 40rpx;
+}
+
+.TagsActive {
+    background-color: rgb(254, 239, 217);
+    color: rgb(255, 142, 65);
+}
+
+.select-area {
+    background-color: rgb(250, 250, 250);
+    color: rgb(51, 51, 51);
+    border-radius: 20rpx 20rpx 0 0;
+    height: 100rpx;
+    line-height: 100rpx;
+}
+
+.fields {
+    height: 600rpx;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: scroll;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.dark-font {
+    color: rgb(51, 51, 51);
+    font-size: 35rpx;
+}
+
+.padding-tb-2 {
+    padding: 20rpx 0;
+}
+
+
+
+.field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30rpx 20rpx;
+    width: 33.33333%;
+}
+
+.icon-style {
+    width: 70rpx;
+    height: 70rpx;
+    margin-bottom: 20rpx;
+}
+
+.field-notes {
+    color: #999;
+    font-size: 28rpx;
+    margin-bottom: 30rpx;
+}

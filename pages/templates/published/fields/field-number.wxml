@@ -1,0 +1,17 @@
+<template name="field-number-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <view class="grey single-control">1234567890</view>
+    </view>
+</template>
+<template name="field-number">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="field-box">
+        <view class="icon-box flex">
+            <view class="iconfont icon-field-number inline-control field-icon"></view>
+            <input class="form-input" name="{{api_code}}" type="digit" value="{{value}}"></input>
+            <view class="weui-cell" wx:if="{{readonly}}">{{value||''}}</view>
+        </view>
+    </view>
+</template>
+<import src="display-title"></import>

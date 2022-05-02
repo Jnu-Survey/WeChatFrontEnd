@@ -1,0 +1,36 @@
+<!--pages/create-form-list/create-form-list.wxml-->
+<view class="create-form-list">
+    <view class="header">新建</view>
+    <view bindtap="openScene" class="create-empty-form" data-type="form">
+        <image src="https://img.hengyimonster.top/img/create-empty.png"></image>
+        <text class="empty-text">创建空白表单</text>
+    </view>
+    <view class="header">选择使用场景</view>
+    <view class="list">
+        <view bindtap="createScene" class="section" data-type="survey">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-survey.png"></image>
+            <text class="title">问卷调查</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="registry">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-registry.png"></image>
+            <text class="title">活动报名</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="vote">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-vote.png"></image>
+            <text class="title">投票评选</text>
+        </view>
+        <!-- <view bindtap="createScene" class="section" data-type="exam-evaluation">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-exam.png"></image>
+            <text class="title">考试测评</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="reservation">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-reservation.png"></image>
+            <text class="title">预约</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="customer_acquisition">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-customer.png"></image>
+            <text class="title">线上获客</text>
+        </view> -->
+    </view>
+</view>
+

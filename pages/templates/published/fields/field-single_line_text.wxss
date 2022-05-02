@@ -1,0 +1,18 @@
+.single-control {
+    height: 88rpx;
+    line-height: 88rpx;
+}
+
+.field-box {
+    border: 1px solid #c3c9d0;
+    border-radius: 2px;
+    font-size: 14px;
+    margin-top: 5px
+}
+
+.form-input {
+    font-size: 15px;
+    padding: 0 8px;
+    height: 36px;
+    line-height: 36px
+}   

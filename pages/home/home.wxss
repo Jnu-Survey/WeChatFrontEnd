@@ -1,28 +1,63 @@
 /* pages/home/home.wxss */
+.homePage,page {
+    height: 100%;
+    background-color: #F7F7F7;
+}
+
 .swiper-item {
     display: flex;
     flex-direction: column;
-    width: 650rpx;
-    margin: 40rpx auto;
-    padding: 50rpx 75rpx;
+    width: 480rpx;
+    margin: 60rpx auto;
     box-sizing: border-box;
-    border-radius: 40rpx;
-    box-shadow: 10px 10px 8px #ccc;
+    border-radius: 20rpx;
+    box-shadow: 7px 7px 3px rgba(204, 204, 204, 0.3);
 }
 
 .title {
-    color: white;
+    color: rgb(100, 99, 99);
     font-weight: 700;
-    font-size: 20px;
+    font-size: 40rpx;
 }
 
-.clickTips {
-    margin: 15rpx 60rpx 0 60rpx;
+.formEntry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20rpx;
+    margin: 0 auto;
+    width: 600rpx;
+    padding: 20rpx;
+    background-color: white;
+    box-shadow: 5px 5px 3px rgba(204, 204, 204, 0.3);
+}
+
+.formEntryBox {
+    display: flex;
+    width: 300rpx;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formEntry .formEntryBox:first-child {
+    border-right: 1px solid #E8E8E8;
+}
+
+.entryIcon {
+    width: 180rpx;
+    /* margin-bottom: 10rpx; */
+}
+
+/* .buttonTip {
+    max-width: 550rpx;
+    padding: 30rpx 10rpx;
+    border-radius: 50rpx;
+    margin: 5rpx auto;
     box-sizing: border-box;
     text-align: center;
     color: white;
-    font-weight: 500;
-    padding: 30rpx;
+    font-weight: 600;
+    font-size: 35rpx;
     background-color: rgb(6, 174, 86);
-    border-radius: 50rpx;
-}
+} */

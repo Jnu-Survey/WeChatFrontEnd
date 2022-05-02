@@ -1,0 +1,41 @@
+<template name="field-multi_picture-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <text class="single-control label">点击上传图片</text>
+    </view>
+</template>
+
+<template name="field-multi_picture">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="multi_picture-box">
+        <view class="flex flex-wrap">
+            <block wx:for="{{files}}" wx:key="{{index}}">
+                <view bind:tap="doRemoveImage" class="filed-image" data-api-code="{{api_code}}" data-file-index="{{index}}" style="position:relative;" wx:if="{{removingImage}}">
+                    <image mode="scaleToFill" src="{{item.preview_path||item.path}}"></image>
+                    <view class="absolute-center">
+                        <icon size="23" type="cancel"></icon>
+                    </view>
+                </view>
+                <view bindtap="previewImage" class="filed-image" data-api-code="{{api_code}}" data-src="{{item.path}}" wx:else>
+                    <image mode="scaleToFill" src="{{item.preview_path||item.path}}"></image>
+                    <view class="weui-uploader__file-content" wx:if="{{!item.attachment_id}}">
+                        <view class="weui-loading"></view>
+                    </view>
+                </view>
+            </block>
+            <view bindtap="removeImage" class="attachment-remove-box" data-api-code="{{api_code}}" hidden="{{!files||files.length===0||processing>0}}"></view>
+            <view class="attachment-reveal-box" wx:if="{{removingImage}}">
+                <view bindtap="revealRemove" data-api-code="{{api_code}}">
+                    <icon size="23" type="success_no_circle"></icon>
+                </view>
+            </view>
+            <checkbox-group hidden name="{{api_code}}">
+                <checkbox checked value="{{item.attachment_id}}" wx:if="{{item.attachment_id}}" wx:for="{{files}}" wx:key="{{index}}"></checkbox>
+            </checkbox-group>
+        </view>
+        <view bindtap="chooseImage" class="attachment-text" data-api-code="{{api_code}}" hidden="{{max_file_quantity==files.length||removingImage}}" wx:if="{{!removingImage}}">
+            <view class="iconfont icon-add3"></view> 请选择上传图片，限每个20MB以内 </view>
+    </view>
+</template>
+
+<import src="display-title"></import>

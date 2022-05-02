@@ -1,56 +1,22 @@
 // pages/home/home.js
-var checkWebp = require('../../common/detectWebp')
+const checkWebp = require('../../common/detectWebp');
+const getToken = require('../../common/getToken')
 Page({
     /**
      * 页面的初始数据
      */
     data: {
-        swiperItem:2,
+        swiperItem:[
+            "https://img.hengyimonster.top/img/swapping_bg1.png",
+            "https://img.hengyimonster.top/img/swapping_bg2.png",
+            "https://img.hengyimonster.top/img/swapping_bg3.png",
+        ],
         buttonTip:'',
         clickHide:true,
-        buttonTipShow:false
+        buttonTipShow:false,
+        goToModule:false
     },
 
-    checkToken(){
-        // 获取用户基本信息
-        wx.getUserProfile({
-            desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-            success:(info)=>{
-                // 获取登录凭证
-                wx.login({
-                    success (res) {
-                      if (res.code) {
-                        //发起网络请求
-                        wx.request({
-                            url: 'https://api.hengyimonster.top/login/dealLogin',
-                            method:"POST",
-                            header: { 
-                                'content-type': 'application/json' 
-                            }, 
-                            data:{
-                                avatarUrl:info.userInfo.avatarUrl,
-                                city:info.userInfo.city,
-                                code:res.code,
-                                country:info.userInfo.country,
-                                gender:info.userInfo.gender,  //性别 0：未知、1：男、2：女
-                                nickName:info.userInfo.nickName,
-                                province:info.userInfo.province
-                            },
-                            success:(res)=>{
-                                console.log(res)
-                            },
-                            fail(err){
-                                console.log("网络请求失败！",err)
-                            }
-                          })
-                      } else {
-                        console.log('获取登陆凭证失败' + res.errMsg)
-                      }
-                    }
-                  })
-            }
-          })
-    },
 
     /**
      * 生命周期函数--监听页面加载
@@ -60,32 +26,40 @@ Page({
         wx.request({
             url: 'https://api.hengyimonster.top/home/swiperItem',
             success:(res)=>{
-                let result=res.data.data
-                if(!checkWebp.detectWebp()) {
-                    result.forEach((item,index,arr)=>{
-                        result[index].img='https://wc.hengyimonster.top/home/'+result[index].img+".webp";
-                    })
-                }
-                else {
-                    result.forEach((item,index,arr)=>{
-                        result[index].img='https://wc.hengyimonster.top/home/'+result[index].img+".png";
-                    })
-                }
-                that.setData({
-                    swiperItem:result,
-                    clickHide:false
-                })
+                let result=res.data.data;
+                console.log("result",result)
+                // if(!checkWebp.detectWebp()) {
+                //     result.forEach((item,index,arr)=>{
+                //         result[index].img="https://img.hengyimonster.top/img/"+result[index].img+".webp";
+                //     })
+                // }
+                // else {
+                //     result.forEach((item,index,arr)=>{
+                //         result[index].img="https://img.hengyimonster.top/img/"+result[index].img+".png";
+                //     })
+                // }
+                // that.setData({
+                //     swiperItem:result,
+                //     clickHide:false,
+                //     goToModule:true
+                // })
             }
           })
+    },
 
-        wx.request({
-            url: 'https://api.hengyimonster.top/home/buttonTitle',
-            success:(res)=>{
-                this.setData({
-                    buttonTip:res.data.data,
-                    buttonTipShow:true
-                })
-            }
+    //提取token进入页面
+     judgeToken() {
+        getToken.checkToken().then(data=>{
+            // 带着token进入选择的页面:data就是返回的token
+            wx.navigateTo({
+                url: '/pages/create-form-list/create-form-list',
+                fail(err) {
+                    console.log("进入创建表单页面失败！",err);
+                }
+            })
+        }).catch(error=>{
+            //返回token失败
+            console.log(error);
         })
     },
 

@@ -1,0 +1,8 @@
+var _filter = ({
+    formatCount: (function(count) {
+        return (count > 9999 ? (count / 10000).toFixed(1) + 'w' : count)
+    }),
+});
+module.exports = ({
+    formatCount: _filter.formatCount,
+});

@@ -1,0 +1,16 @@
+<template name="field-section_break-display">
+    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <rich-text class="weui-cell" nodes="{{notes}}"></rich-text>
+    </view>
+</template>
+<template name="field-section_break">
+    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <rich-text class="weui-cell" nodes="{{notes}}"></rich-text>
+    </view>
+</template>
+<block wx:if="{{readonly}}"></block>
+<block wx:if="{{readonly}}"></block>

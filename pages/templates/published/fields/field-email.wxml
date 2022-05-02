@@ -1,0 +1,12 @@
+<!-- 制作表单展示部分 -->
+<template name="field-email-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations,pcMode:pcMode}}"></template>
+    </view>
+</template>
+<!-- 用户输入 -->
+<template name="field-email">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <input class="field-box form-input" name="{{api_code}}" value="{{value}}"></input>
+</template>
+<import src="display-title"></import>

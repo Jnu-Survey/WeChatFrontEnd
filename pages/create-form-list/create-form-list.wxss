@@ -1,0 +1,67 @@
+/* pages/create-form-list/create-form-list.wxss */
+view {
+    box-sizing: border-box;
+}
+
+.create-form-list {
+    padding: 10rpx 30rpx;
+}
+
+.create-form-list .header {
+    color: #333;
+    font-size: 45rpx;
+    font-weight: 700;
+    padding: 20rpx 0 30rpx 0;
+}
+
+.create-empty-form {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 4rpx;
+    font-size: 38rpx;
+    border: 1px solid hsla(0,0%,89%,.8);
+    box-shadow: 7rpx 7rpx 5rpx hsla(0,0%,89%,.8);
+    padding: 45rpx 0 45rpx 60rpx;
+    margin-bottom: 50rpx;
+}
+
+.create-empty-form image {
+    height: 80rpx;
+    width: 80rpx;
+}
+
+.create-empty-form .empty-text {
+    margin-left: 30rpx;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 45rpx 0 45rpx 60rpx;
+    background-color: #fff;
+    border-radius: 6rpx;
+    border: 1px solid #e3e3e3;
+    box-shadow: 7rpx 7rpx 5rpx #e3e3e3;
+    list-style: none;
+    margin-bottom: 40rpx;
+    text-align: center;
+}
+
+.icon {
+    height: 80rpx;
+    width: 80rpx;
+}
+
+.title {
+    color: #333;
+    font-size: 38rpx;
+    margin-left: 30rpx;
+}

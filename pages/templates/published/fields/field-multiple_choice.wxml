@@ -1,0 +1,32 @@
+<template name="field-multiple_choice-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <view class="padding-control" wx:for="{{choices}}" wx:key="{{item.value}}">
+            <view style="display: flex;align-items: center;height: 40rpx;line-height: 40rpx;">
+                <view class="checkbox-icon"></view>
+                <view>{{item.name}}</view>
+            </view>
+        </view>
+    </view>
+</template>
+<template name="field-multiple_choice">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="field-box">
+        <checkbox-group bindchange="checkboxChange" id="field_{{api_code}}" name="{{api_code}}" wx:if="{{!readonly}}">
+            <label class="flex flex-middle choice-box" wx:for="{{choices}}" wx:key="{{item.value}}">
+                <checkbox checked="{{item.selected}}" class="hidden" value="{{item.value||index}}"></checkbox>
+                <view class="weui-cell__hd">
+                    <view class="custom-field-icon custom-checkbox {{item.selected?'active':''}}">
+                        <view class="inner"></view>
+                    </view>
+                </view>
+                <view class="weui-cell__bd">{{item.value}}</view>
+            </label>
+        </checkbox-group>
+        <view class="weui-cell {{isImageChoice?'image-list':'text-list'}}" wx:if="{{readonly}}">
+            <view class="item" wx:if="{{item.selected&&!isImageChoice}}" wx:for="{{choices}}" wx:key="{{item.value}}"> {{item.name}} </view>
+            <image class="item weui-uploader__img" mode="aspectFill" src="{{item.image_url}}" wx:if="{{item.selected&&isImageChoice}}" wx:for="{{choices}}" wx:key="{{item.value}}"></image>
+        </view>
+    </view>
+</template>
+<import src="display-title"></import>

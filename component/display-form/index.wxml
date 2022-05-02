@@ -1,0 +1,15 @@
+<import src="../../pages/templates/fields"></import>
+<view class="form-img" wx:if="{{form.header_image.url}}">
+    <image mode="scaleToFill" src="{{form.header_image.url}}"></image>
+</view>
+<view class="{{isFullScreen?'is-full-screen':''}} {{form.header_image.url?'img-form':'form-box'}}">
+    <view class="form-header">
+        <view class="form-name">{{form.name}}</view>
+        <view class="form-desc" wx:if="{{form.description}}">{{form.description}}</view>
+    </view>
+    <view class="bottom-split" style="margin:0 -30rpx;"></view>
+    <form bind:submit="_formSubmit" reportSubmit="{{true}}">
+        <template is="template-fields" data="{{fields:form.fields,shareMode:share,cooldowns:cooldowns,mobiles:mobiles,codeCountDowns:codeCountDowns,countDownTimers:countDownTimers}}"></template>
+        <button bindgetuserinfo="_getUserInfoAndSubmit" class="btn-sub {{form.processing>0?'disabled':''}}" disabled="{{form.processing>0}}" formType="submit" openType="getUserInfo"> 提交 </button>
+    </form>
+</view>

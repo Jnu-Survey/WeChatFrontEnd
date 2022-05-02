@@ -1,0 +1,47 @@
+<template name="display-fields" class="display-fields">
+    <block wx:if="{{pcMode}}">
+        <view bind:tap="_editField" class="section field-{{item.type}}" data-field="{{item}}" data-index="{{index}}" wx:for="{{fields}}" wx:key="{{index}}">
+            <template is="field-single_line_text-display" data="{{...item,shareMode:share,pcMode:pcMode}}"></template>
+        </view>
+    </block>
+    <block wx:else>
+        <view bind:tap="_editField" class="section" data-field="{{item}}" data-index="{{index}}" wx:for="{{fields}}" wx:key="{{index}}">
+            <template is="{{'field-'+item.type+'-display'}}" data="{{...item,shareMode:shareMode,cooldowns:cooldowns,mobiles:mobiles,codeCountDowns:codeCountDowns,countDownTimers:countDownTimers}}" wx:if="{{item.type==='mobile'}}"></template>
+            <template is="{{'field-'+item.type+'-display'}}" data="{{...item,shareMode:share}}" wx:else></template>
+        </view>
+    </block>
+</template>
+<template name="template-fields">
+    <view class="section field-{{item.type}}" wx:for="{{fields}}" wx:key="index">
+        <template is="{{'field-'+item.type}}" data="{{...item,shareMode:shareMode,cooldowns:cooldowns,mobiles:mobiles,codeCountDowns:codeCountDowns,countDownTimers:countDownTimers}}" wx:if="{{item.type==='mobile'}}"></template>
+        <template is="{{'field-'+item.type}}" data="{{...item,shareMode:shareMode}}" wx:else></template>
+    </view>
+</template>
+<import src="published/fields/field-paragraph_text.wxml"></import>
+<import src="published/fields/field-single_line_text.wxml"></import>
+<import src="published/fields/field-single_choice.wxml"></import>
+<import src="published/fields/field-multiple_choice.wxml"></import>
+<import src="published/fields/field-multi_picture.wxml"></import>
+<import src="published/fields/field-number.wxml"></import>
+<import src="published/fields/field-mobile.wxml"></import>
+<import src="published/fields/field-date.wxml"></import>
+<import src="published/fields/field-drop_down.wxml"></import>
+<import src="published/fields/field-rating.wxml"></import>
+<import src="published/fields/field-geo_location.wxml"></import>
+<import src="published/fields/field-attachment.wxml"></import>
+<import src="published/fields/field-time.wxml"></import>
+<import src="published/fields/field-likert.wxml"></import>
+<import src="published/fields/field-matrix.wxml"></import>
+<import src="published/fields/field-section_break.wxml"></import>
+<import src="published/fields/field-address.wxml"></import>
+<import src="published/fields/field-email.wxml"></import>
+<import src="published/fields/field-link.wxml"></import>
+<import src="published/fields/field-phone.wxml"></import>
+<import src="published/fields/field-cascade_drop_down.wxml"></import>
+<import src="published/fields/field-form_association.wxml"></import>
+<import src="published/fields/field-basic_goods.wxml"></import>
+<import src="published/fields/field-goods.wxml"></import>
+<import src="published/fields/field-name.wxml"></import>
+<import src="published/fields/field-address.wxml"></import>
+<import src="published/fields/field-phone.wxml"></import>
+<import src="published/fields/field-email.wxml"></import>

@@ -1,18 +1,26 @@
 // pages/person/person.js
+const getUserInfo = require('../../common/getUserInfo');
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-
+        userInfo: {},
+        doingForm:[],
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        getUserInfo.getInfo().then((data)=>{
+            this.setData({
+                userInfo:data
+            })
+        }).catch((error)=>{
+            console.log(error);
+        })
     },
 
     /**

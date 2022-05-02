@@ -1,0 +1,24 @@
+<template name="field-single_choice-display">
+    <view class="bg-white top-control left-control right-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <view class="padding-control" style="display: flex;align-items: center;height: 40rpx;line-height: 40rpx;" wx:for="{{choices}}" wx:key="{{item.value}}">
+            <view class="radio-icon"></view>
+            <view>{{item.name}}</view>
+        </view>
+    </view>
+</template>
+<template name="field-single_choice">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="field-box">
+        <radio-group bindchange="radioChange" id="field_{{api_code}}" name="{{api_code}}" wx:if="{{!readonly}}">
+            <label capture-bind:tap="radioClick" class="flex flex-middle choice-box" data-api-code="{{api_code}}" data-item="{{item}}" wx:for="{{choices}}" wx:key="{{item.value}}">
+                <view class="custom-field-icon custom-radio {{item.selected?'active':''}}">
+                    <view class="inner"></view>
+                </view>
+                <radio checked="{{item.selected}}" class="hidden" value="{{item.value||index}}"></radio>
+                <view>{{item.value}}</view>
+            </label>
+        </radio-group>
+    </view>
+</template>
+<import src="display-title"></import>

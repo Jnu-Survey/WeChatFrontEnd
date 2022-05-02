@@ -1,0 +1,24 @@
+<template name="display-title">
+    <view class="flex flex-middle">
+        <view class="flex-1 flex flex-column padding-control">
+            <view class="field-title"> 
+                <span style="color:red;" wx:if="{{validations.required}}">*</span>
+                {{label?label:'未命名'}}
+            </view>
+            <view class="label" wx:if="{{!pcMode}}">{{notes}}</view>
+        </view>
+        <!-- <image src="../../../../assets/image/right.png" class="field-title-icon" mode="widthFix"></image> -->
+    </view>
+</template>
+
+<template name="template-title">
+    <view class="flex flex-middle">
+        <view class="flex-1 flex flex-column">
+            <view class="field-title"> 
+                <span style="color:red;" wx:if="{{validations.required}}">*</span>
+                {{label}}
+            </view>
+            <view class="label">{{notes}}</view>
+        </view>
+    </view>
+</template>

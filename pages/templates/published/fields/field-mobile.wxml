@@ -1,0 +1,28 @@
+<template name="field-mobile-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <view class="grey single-control">13200000000</view>
+    </view>
+</template>
+<template name="field-mobile">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="field-box">
+        <view class="flex icon-box">
+            <view class="iconfont icon-field-mobile inline-control field-icon"></view>
+            <input bindinput="saveMobile" class="form-input" data-api-code="{{api_code}}" maxlength="11" name="{{api_code}}" placeholder="请输入手机号码" type="number" value="{{value.value}}"></input>
+            <view class="weui-cell" wx:if="{{readonly}}">{{value.value}}</view>
+        </view>
+    </view>
+    <view style="margin-top:20rpx;" wx:if="{{sms_verification&&!edit_mode}}">
+        <view class="flex">
+            <view class="mobile-box">
+                <input class="form-input" name="{{api_code+'_verification_token'}}" placeholder="验证码" style="width:100%;"></input>
+            </view>
+            <view class="mobile-box text-center">
+                <view class="verification-area" wx:if="{{cooldowns[api_code]}}"> {{codeCountDowns[api_code]}}S后重发 </view>
+                <view bindtap="getNewCode" data-api-code="{{api_code}}" data-mobile="{{mobiles[api_code]}}" wx:else> 获取验证码 </view>
+            </view>
+        </view>
+    </view>
+</template>
+<import src="display-title"></import>

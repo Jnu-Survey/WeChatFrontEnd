@@ -1,0 +1,27 @@
+<template name="field-geo_location-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <view class="single-control grey">点击获取当前位置</view>
+    </view>
+</template>
+<template name="field-geo_location">
+    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="geo-box flex flex-center" style="display:flex;align-items:center;min-height:72rpx;padding:0 20rpx;">
+        <view class="weui-cell weui-cell_access">
+            <view class="weui-cell__bd">
+                <view bindtap="getCurrentLocation" data-api-code="{{api_code}}">
+                    <text wx:if="{{value.address}}">{{value.address}}</text>
+                    <text wx:if="{{!value.address&&value.latitude}}">已获取当前位置</text>
+                    <view class="flex" wx:if="{{!value.address&&!value.latitude}}">
+                        <text class="iconfont icon-field-geo" style="margin-right:10rpx;"></text> 获取当前位置 </view>
+                </view>
+            </view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+            <input hidden="true" name="{{api_code}}[latitude]" type="text" value="{{value.latitude}}"></input>
+            <input hidden="true" name="{{api_code}}[longitude]" type="text" value="{{value.longitude}}"></input>
+            <input hidden="true" name="{{api_code}}[address]" type="text" value="{{value.address}}"></input>
+        </view>
+        <view class="weui-cell" wx:if="{{readonly}}">{{value.address}}</view>
+    </view>
+</template>
+<import src="display-title"></import>

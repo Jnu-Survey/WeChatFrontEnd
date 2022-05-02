@@ -3,13 +3,20 @@
         "pages/home/home",
         "pages/index/index",
         "pages/record/record",
-        "pages/person/person"
+        "pages/person/person",
+        "pages/account/account",
+        "pages/create-form-list/create-form-list",
+        "pages/create-form/create-form",
+        "pages/field/field",
+        "pages/preview/preview",
+        "pages/share/share"
     ],
     "tabBar": {
         "borderStyle": "white",
         "backgroundColor": "#F7F7FA",
         "color": "#7F8389",
         "selectedColor": "#2875E8",
+        "position":"bottom",
         "list": [
             {
                 "pagePath": "pages/home/home",
@@ -24,20 +31,29 @@
                 "selectedIconPath": "assets/image/entries_on.png"
             },
             {
-                "pagePath": "pages/person/person",
+                "pagePath": "pages/account/account",
                 "text": "个人账户",
                 "iconPath": "assets/image/profile.png",
                 "selectedIconPath": "assets/image/profile_on.png"
             }
         ]
     },
+    "networkTimeout": {
+        "request": 10000,
+        "downloadFile": 10000
+    },
+    "permission": {
+        "scope.userLocation": {
+          "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
     "subPackages": [],
     "window": {
-        "navigationBarTitleText": "软件工程-金数据",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#2875E8",
-        "navigationBarTextStyle": "white",
-        "backgroundColor": "#EFEFF4"
+        "navigationBarTitleText": "暨数据",
+        "navigationBarTextStyle":"black",
+        "navigationBarBackgroundColor": "#fff",
+        "backgroundColor": "#EFEFF4",
+        "backgroundTextStyle": "light"
     },
     "style": "v2",
     "usingComponents": {},

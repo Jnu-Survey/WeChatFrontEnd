@@ -1,0 +1,2 @@
+<import src="../../pages/templates/fields"></import>
+<template is="display-fields" data="{{fields:form.fields,pcMode:pcMode}}"></template>

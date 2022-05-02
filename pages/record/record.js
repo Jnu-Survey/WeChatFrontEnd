@@ -1,11 +1,25 @@
 // pages/record/record.js
+const checkWebp = require('../../common/detectWebp');
 Page({
-
     /**
      * 页面的初始数据
      */
     data: {
+        tabs: [ "我填的表", "填我的表" ],
+        activeIndex: 0,
+        suitWebp:false,
+        participatedNextPage: "",
+        collectedEntryList: [],
+        participatedForms: [],
+        isParticipatedFormsLoading: !1
+    },
 
+    // 导航栏点击
+    tabClick: function(t) {
+        this.setData({
+            sliderOffset: t.currentTarget.offsetLeft,
+            activeIndex: parseInt(t.currentTarget.id, 10)
+        });
     },
 
     /**
@@ -13,6 +27,12 @@ Page({
      */
     onLoad: function (options) {
 
+    },
+
+    checkWebpImg() {
+        this.setData({
+            suitWebp:checkWebp.detectWebp()
+        })
     },
 
     /**

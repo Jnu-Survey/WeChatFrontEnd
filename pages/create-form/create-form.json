@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+      "gd-select-field": "../../component/select-field/index",
+      "gd-display-field": "../../component/display-field/index"
+  }
+}

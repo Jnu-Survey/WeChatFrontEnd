@@ -1,0 +1,4 @@
+@font-face {
+  font-family: iconfont;
+  src: url("//at.alicdn.com/t/font_225537_cfpjn2fakf.woff") format("woff"), url("//at.alicdn.com/t/font_225537_cfpjn2fakf.svg#iconfont") format("svg")
+}

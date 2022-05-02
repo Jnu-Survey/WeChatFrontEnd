@@ -23,6 +23,7 @@ function detectWebp() {
   
     return support;
 }  
+
 module.exports = {
     detectWebp
 }

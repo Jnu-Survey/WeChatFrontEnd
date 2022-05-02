@@ -1,0 +1,16 @@
+<template name="field-likert-display">
+    <view class="bg-white top-control left-control">
+        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+        <text class="padding-control input-box" decode="{{true}}">&nbsp;</text>
+    </view>
+</template>
+<template name="field-likert">
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell text-list">
+            <view class="item" wx:for="{{formattedValue}}" wx:key="{{index}}">{{item}}</view>
+        </view>
+    </view>
+</template>
+<import src="display-title"></import>
+<block wx:if="{{readonly}}"></block>
+<block wx:if="{{readonly}}"></block>

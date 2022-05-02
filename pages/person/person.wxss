@@ -1,1 +1,97 @@
 /* pages/person/person.wxss */
+.page-profile {
+    height: 100%;
+    background: linear-gradient(#edfeff,white);
+}
+
+.top {
+    width: 100%;
+}
+
+.infoBox {
+    display: flex;
+    padding: 20rpx 0 0 50rpx;
+    justify-content: start;
+    align-items: center;
+    font-size: 43rpx;
+}
+
+.user-icon {
+    border: 1rpx solid #d9d9d9;
+    border-radius: 50%;
+    height: 120rpx;
+    width: 120rpx;
+    margin-right: 30rpx;
+}
+
+.user-icon>image {
+    border: none;
+}
+
+.userinfo {
+    margin-left: 30rpx;
+}
+
+.profile-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 60rpx;
+}
+
+.title {
+    color: #000;
+    font-weight: 600;
+    letter-spacing: 4rpx;
+    font-size: 38rpx;
+    padding: 0 0 15rpx 30rpx;
+}
+
+.profile-box {
+    width: 620rpx;
+    padding: 40rpx 10rpx 40rpx 60rpx;
+    margin: 20rpx auto;
+    font-size: 38rpx;
+    border: 1px solid white;
+    border-radius: 30rpx;
+    border: 1px solid rgba(204, 204, 204, .3);
+    background-color: white;
+    box-shadow: 7rpx 7rpx 5rpx rgba(204, 204, 204, .3);
+}
+
+.iconfont {
+    width: 60rpx;
+    margin-right: 30rpx
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    margin: 25rpx 50rpx 25rpx 0;
+    padding-bottom: 25rpx;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.profile-box>.list-item:first-child {
+    margin: 10rpx 50rpx 25rpx 0;
+}
+
+.profile-box>.list-item:last-child {
+    margin: 25rpx 50rpx 0 0;
+    border: 0;
+    padding: 0;
+}
+
+.isDoing {
+    width: 650rpx;
+    margin: 30rpx auto;
+    display: flex;
+    font-size: 38rpx;
+    justify-content: center;
+    align-items: center;
+    padding: 60rpx 25rpx;
+    background-color: white;
+    border: 1px solid rgba(204, 204, 204, .5);
+    border-radius: 10rpx;
+    box-shadow: 7rpx 7rpx 3rpx rgba(204, 204, 204, .3);
+}

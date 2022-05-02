@@ -1,0 +1,6 @@
+<view class="wrapper {{visible?'visible':''}}">
+    <view bindtap="clickBackdrop" class="backdrop"></view>
+    <view bindtransitionend="transitionEnd" class="popup">
+        <slot></slot>
+    </view>
+</view>

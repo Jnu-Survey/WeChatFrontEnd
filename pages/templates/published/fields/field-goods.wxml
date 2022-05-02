@@ -1,0 +1,22 @@
+<template name="field-goods-display">
+    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell icon-with-text-list">
+            <view class="icon-with-text-item" wx:for="{{formattedValue}}" wx:key="{{index}}">
+                <image class="weui-uploader__img icon" mode="aspectFill" src="{{goodsImages[index]}}"></image> {{item}} </view>
+        </view>
+    </view>
+</template>
+<template name="field-goods">
+    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    </view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell icon-with-text-list">
+            <view class="icon-with-text-item" wx:for="{{formattedValue}}" wx:key="{{index}}">
+                <image class="weui-uploader__img icon" mode="aspectFill" src="{{goodsImages[index]}}"></image> {{item}} </view>
+        </view>
+    </view>
+</template>
+<block wx:if="{{readonly}}"></block>
+<block wx:if="{{readonly}}"></block>

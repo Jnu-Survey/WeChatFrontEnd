@@ -1,0 +1,101 @@
+<!--pages/field/field.wxml-->
+<view class="page__bd">
+    <view class="page">
+        <!-- 题目和提示 -->
+        <input bind:change="updateField" class="title" id="label" placeholder="请输入题目" value="{{field.label}}"></input>
+            <textarea bind:blur="updateField" class="field-textarea" id="notes" name="notes" placeholder="点此输入提示" value="{{field.notes}}"></textarea>
+        <block>
+            <!-- 选择和下拉添加选项 -->
+            <view class="bg-white top-control left-control" hidden="{{field.type==='rating'?true:false}}" wx:if="{{field.supportChoices}}">
+                <view class="choice-options">
+                    <!-- 已有选项 -->
+                    <view class="single-control" wx:for="{{field.choices}}" wx:key="{{index}}">
+                        <!-- 删除图标 -->
+                        <image bindtap="delOption" data-index="{{index}}" src="../../assets/image/delete.png" class="delIcon"></image>
+                        <!-- 输入框 -->
+                        <input bindblur="bindInputBlur" bindchange="bindOptionsChange" bindfocus="bindInputFocus" data-index="{{index}}" id="choices" value="{{item.name}}"></input>
+                    </view>
+                    <!-- 增加选项 -->
+                    <view bindtap="addOption" class="addOption">
+                        <image src="../../assets/image/addOption.png" class="addIcon"></image>
+                        <view>添加选项</view>
+                    </view>
+                </view>
+            </view>
+            <!-- 上传文件 -->
+            <view wx:if="{{field.type==='attachment'}}">
+                <view class="weui-cells__title">最大文件数量</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="bindMaxPictureQuantityChange" id="max_file_quantity" range="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}}" value="{{field.max_pic_quantity-1}}">
+                                <view class="weui-select">{{field.max_pic_quantity || 1}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 上传图片 -->
+            <view wx:if="{{field.type==='multi_picture'}}">
+                <view class="weui-cells__title">最大图片数量</view>
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_select">
+                        <view class="weui-cell__bd">
+                            <picker bindchange="bindMaxFileQuantityChange" id="max_file_quantity" range="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}}" value="{{field.max_file_quantity-1}}">
+                                <view class="weui-select">{{field.max_file_quantity || 1}}</view>
+                            </picker>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!-- 位置 -->
+            <view wx:if="{{field.type==='geo_location'}}">
+                <view class="weui-cells weui-cells_after-title">
+                    <view class="weui-cell weui-cell_switch" style="display: flex;align-items: center;">
+                        <view class="weui-cell__ft">
+                            <switch bindchange="bindSwitchChange" checked="{{field.localizable_on_mobile}}" id="localizable_on_mobile"></switch>
+                        </view>
+                        <view class="weui-cell__bd">允许填写者自行标注位置</view>
+                    </view>
+                </view>
+            </view>
+            <!-- 必填 -->
+            <view class="mustBox">
+                <switch bindchange="bindRequiredChange" checked="{{required}}"></switch>
+                <view class="mustTip">必须填</view>
+            </view>
+            <!-- 验证码 -->
+            <view wx:if="{{field.type==='mobile'}}">
+                <view class="weui-cells__title">验证码</view>
+                <view class="weui-cells weui-cells_after-title" style="overflow: hidden;">
+                    <view class="weui-cell weui-cell_switch">
+                        <view class="weui-cell__bd">短信验证码效验</view>
+                        <view class="weui-cell__ft">
+                            <switch bindchange="bindSwitchChange" checked="{{field.sms_verification}}" id="sms_verification"></switch>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_switch" wx:if="{{field.sms_verification}}">
+                        <view class="weui-cell__bd">请输入短信签名</view>
+                        <view class="weui-cell__ft">
+                            <input bindinput="updateFieldAttrs" class="autograph-input weui-input" cursorSpacing="80" id="sms_signature" type="text" value="{{sms_signature}}"></input>
+                        </view>
+                    </view>
+                    <view class="weui-cell weui-cell_warn attribute-tip" wx:if="{{field.sms_verification}}">
+                        <view class="weui-cell__bd">
+                            <view>请谨慎填写您的公司简称、网站名、品牌名，3-8个汉字。</view>
+                            <view>请不要在签名中包含任何特殊字符如【】。</view>
+                            <view>如签名不符合规范，将会被运营商拦截。</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="field-tip text-muted"> 勾选后，填写者在填写该字段时会收到一条验证码用于验证填写者手机号真实性。（注：短信消耗将从你的账户余量中扣除。） </view>
+            </view>
+        </block>
+        <!-- 删除和保存 -->
+        <view class="delAndSaveBox">
+            <view catchtap="delField" class="del" > 删除字段 </view>
+            <view catchtap="saveField" class="save" >保存字段 </view>
+        </view>
+    </view>
+</view>
+

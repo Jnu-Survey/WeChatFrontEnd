@@ -1,0 +1,28 @@
+<!-- 面板上升后的背景颜色 -->
+<view animation="{{bgAnimationData}}" bind:tap="_closeToggle" class="bg-box" wx:if="{{showFields}}"></view>
+<!-- 面板 -->
+<view animation="{{animationData}}" class="fields-box" wx:if="{{showFields}}">
+    <view bind:tap="_closeToggle" class="select-area container text-center">
+        <view class="dark-font">添加题目</view>
+    </view>
+    <view class="classifyTag">
+        <view wx:for="{{tagList}}" bind:tap="selectTag" class="Tags {{index==clickedTag?'TagsActive':''}}" data-index="{{index}}" wx:key="index">
+        {{item}} 
+        </view>
+    </view>
+    <!-- 选择区域 -->
+    <!-- 通用题目 -->
+    <view class="fields" wx:if="{{clickedTag===0}}">
+        <view wx:for="{{commomFields}}" bind:tap="_selectField" class="field text-center" data-index="{{index}}" wx:key="index" data-type="{{item.type}}">
+        <image class="icon-style" src="{{item.icon}}" mode="widthFix"></image> 
+        {{item.label}} 
+        </view>
+    </view>
+    <!-- 联系信息 -->
+    <view class="fields" wx:if="{{clickedTag===1}}">
+        <view wx:for="{{contactFields}}" bind:tap="_selectField" class="field text-center" data-index="{{index}}" wx:key="{{index}}" data-type="{{item.type}}">
+        <image class="icon-style" src="{{item.icon}}" mode="widthFix"></image> 
+        {{item.label}} 
+        </view>
+    </view>
+</view>

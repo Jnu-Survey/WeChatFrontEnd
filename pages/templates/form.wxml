@@ -1,0 +1,25 @@
+<import src="published/form-desc.wxml"></import>
+<import src="fields.wxml"></import>
+<view class="form-header">
+    <template is="form-desc" data="{{...form}}"></template>
+</view>
+<view class="published-form {{share?'share-mode':''}}" style="display:flex;flex-direction:column;" wx:if="{{!loading&&(form.create_source==='weixin_app'||form.type==='template')}}">
+    <view class="page__bd" style="flex:1;">
+        <form bindreset="formReset" bindsubmit="formSubmit">
+            <template is="template-fields" data="{{fields:form.fields,shareMode:share,cooldowns:cooldowns,mobiles:mobiles,codeCountDowns:codeCountDowns,countDownTimers:countDownTimers}}"></template>
+            <view class="weui-btn-area">
+                <button bindgetuserinfo="getUserInfoAndSubmit" class="form-submit" disabled="{{form.processing>0||submiting||share||form.creator_removed}}" formType="submit" lang="zh_CN" openType="getUserInfo" type="primary"> 提交 </button>
+            </view>
+        </form>
+        <view class="report-link text-right" wx:if="{{report}}">
+            <text bind:tap="goReport">举报</text>
+        </view>
+    </view>
+    <view class="weui-footer">
+        <view class="weui-footer__text footer-trans footer-copyright {{isFullScreen?'is-full-screen':''}}">
+            <block wx:if="{{form.type==='template'}}">模板由金数据 jinshuju.net 提供</block>
+            <view bindtap="goHome" wx:elif="form.creator_weixin_info.avatar"> 表单由 <image class="footer-avatar" src="{{form.creator_weixin_info.avatar}}"></image> {{form.creator_weixin_info.nickname}}通过 <text class="gd-link">金数据</text> 创建 </view>
+        </view>
+    </view>
+</view>
+<web-view src="{{publishPageBaseURL+initOptions.token+'?miniprogram=true'}}" wx:if="{{!loading&&form.create_source!=='weixin_app'&&form.type!=='template'}}"></web-view>

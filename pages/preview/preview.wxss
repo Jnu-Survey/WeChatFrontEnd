@@ -1,0 +1,134 @@
+.form-operate {
+    background: #fafafa;
+    border-top: 1rpx solid #e5e5e5;
+    bottom: 0;
+    font-size: 34rpx;
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 10;
+}
+
+.edit-btn {
+    color: #2875e8;
+    padding: 15rpx 0;
+    width: 100%;
+    text-align: center;
+}
+
+.edit-btn+.edit-btn {
+    border-left: 1rpx solid #e5e5e5;
+}
+
+.home-btn {
+    padding: 20rpx 30rpx;
+    width: auto;
+}
+
+.preview-mask {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 2;
+}
+
+.preview-box {
+    padding: 20rpx 0 30rpx;
+}
+
+.btn-sub {
+    background: #2875e8;
+    border-radius: 5rpx;
+    color: #fff;
+    font-size: 32rpx;
+    height: 72rpx;
+    line-height: 72rpx;
+    margin: 10rpx 48rpx;
+}
+
+.preview-text {
+    color: #999;
+    font-size: 28rpx;
+}
+
+.share-action-sheet {
+    height: 80%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 40rpx 0;
+}
+
+.share-action-sheet .header {
+    font-size: 45rpx;
+    margin-bottom: 40rpx;
+}
+
+.share-action-sheet .qrcode-container {
+    border: 1rpx solid #d9d9d9;
+    border-radius: 6rpx;
+    display: flex;
+    height: 50vw;
+    justify-content: center;
+    margin-bottom: 40rpx;
+    overflow: hidden;
+    position: relative;
+    width: 50vw;
+}
+
+.ghost-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(40, 117, 232);
+    color: white;
+    font-size: 40rpx;
+    padding: 15rpx 80rpx;
+    margin-bottom: 30rpx;
+}
+
+.ghost-button image {
+    width: 50rpx;
+}
+
+.share-action-sheet .qrcode-tip {
+    bottom: 0;
+    color: #858585;
+    font-size: 30rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.share-action-sheet .qrcode-img {
+    height: 70%;
+    margin-top: 20px;
+    width: 70%;
+}
+
+.share-action-sheet .actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.share-action-sheet .actions .action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 34rpx;
+    margin: 0 50rpx;
+    text-align: center;
+}
+
+.action-item image {
+    width: 50rpx;
+    margin-bottom: 20rpx;
+}

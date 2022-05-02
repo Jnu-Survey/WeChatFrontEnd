@@ -1,0 +1,88 @@
+<!--pages/account/account.wxml-->
+<view class="page-profile">
+    <view class="top" style="background-image: url('https://img.hengyimonster.top/img/background.webp');">
+        <view class="infoBox">
+            <!-- 头像 -->
+            <view class="user-icon">
+                <image class="user-icon" src="{{userInfo.avatarUrl||'https://img.hengyimonster.top/img/avatar_default.png'}}"></image>
+            </view>
+            <!-- 用户信息 -->
+            <view class="infoText">
+                <view class="userName">
+                    {{userInfo.nickName || '用户名'}}
+                </view>
+                <view wx:if="{{!userInfo.nickName}}">
+                    登录尽享更多服务
+                </view>
+            </view>
+            <!-- 注册登录按钮 -->
+            <view class="infoButton" bindtap="judgeToken" wx:if="{{!userInfo.nickName}}">
+                注册/登录
+            </view>
+        </view>
+
+    <view class="dataShow">
+        <view class="dataShowbox">
+            <view>{{formNum || 0}}</view>
+            <view>表单数量</view>
+        </view>
+        <view class="dataShowbox">
+            <view>{{dataNum || 0}}</view>
+            <view>数据量</view>
+        </view>
+    </view>
+
+    </view>
+
+    <view class="profile-list">
+        <swiper autoplay="true" circular style="max-height: 200rpx;">
+            <swiper-item style="max-height: 100%;">
+                <!-- 暂时没有进行中的表单 -->
+                <view class="isDoing">
+                    <view class="title">正在进行</view>
+                    <view wx:if="{{!doingForm.length}}">
+                        <text>暂时没有进行中的表单</text>
+                    </view>
+                </view>
+            </swiper-item>
+            <!-- 有正在进行中的表单 -->
+        </swiper>
+    </view>
+
+    <view class="profile-list">
+        <view class="title">个人中心</view>
+        <view class="profile-box">
+            <image class="iconfont" mode="widthFix" src="../../assets/image/form.png"></image>
+            <text>我的表单</text>
+            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+        </view>
+        <view class="profile-box">
+            <image class="iconfont" mode="widthFix" src="../../assets/image/intro.png"></image>
+            <text>使用说明</text>
+            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+        </view>
+    </view>
+
+
+    <view class="profile-list">
+        <view class="title">关于我们</view>
+        <view class="profile-box">
+            <image class="iconfont" mode="widthFix" src="../../assets/image/team.png"></image>
+                <text>团队介绍</text>
+            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+        </view>
+        <view class="profile-box">
+            <image class="iconfont" mode="widthFix" src="../../assets/image/feedback.png"></image>
+            <text>提交反馈</text>
+            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+        </view>
+        <view class="profile-box">
+            <image class="iconfont" mode="widthFix" src="../../assets/image/log.png"></image>
+            <text>更新日志</text>
+            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+        </view>
+    </view>
+
+
+</view>
+

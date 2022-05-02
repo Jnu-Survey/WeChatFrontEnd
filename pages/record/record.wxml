@@ -1,2 +1,67 @@
 <!--pages/record/record.wxml-->
-<text>pages/record/record.wxml</text>
+<view class="page">
+    <view class="page page-entries-index">
+        <view class="page__bd">
+            <view class="weui-tab">
+            
+                <!-- 导航栏“我填的表”和“填我的表”-->
+                <view class="weui-navbar">
+                    <view bindtap="tabClick" class="weui-navbar__item {{activeIndex===index?'weui-bar__item_on':''}}" id="{{index}}" wx:for="{{tabs}}" wx:key="index">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </view>
+
+                <view class="weui-tab__panel">
+                    <!-- “我填的表”对应表项 -->
+                    <view class="weui-tab__content tab-participated" hidden="{{activeIndex!==0}}">
+                        <!-- 填表记录不为零时 -->
+                        <view class="weui-panel" wx:if="{{participatedForms.length}}">
+                            <view bindtap="goIntoParticipatedFormDetail" class="weui-media-box weui-media-box_appmsg" data-token="{{item.token}}" hoverClass="weui-cell_active" wx:for="{{participatedForms}}" wx:key="index">
+                                <template is="form-list-item" data="{{...item}}"></template>
+                            </view>
+                        </view>
+                        <!-- 填表记录为零时 -->
+                        <view class="df" wx:else>
+                            <image mode="widthFix" src="{{suitWebp?'https://img.hengyimonster.top/img/fortnite_two_color.webp':'https://img.hengyimonster.top/img/fortnite_two_color.png'}}"></image>
+                            <view class="title">还没有为其它表单填写过数据</view>
+                            <view class="text-muted">当你填写别人的金数据表单，数据会出现在这里</view>
+                        </view>
+                    </view>
+
+                    <!-- “填我的表”对应表项 -->
+                    <view class="weui-tab__content" hidden="{{activeIndex!==1}}">
+                        <!-- 填表记录不为零时 -->
+                        <view class="weui-panel" wx:if="{{collectedEntryList.length}}">
+                            <view wx:for="{{collectedEntryList}}" wx:key="index">
+                                <view class="weui-panel__hd">{{item.date}}</view>
+                                <view class="weui-panel__bd">
+                                    <view class="weui-media-box weui-media-box_small-appmsg mine-box">
+                                        <view class="weui-cells weui-cells_in-small-appmsg">
+                                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/forms/show?token={{notification.form_token}}" wx:for="{{item.notifications}}" wx:for-item="notification" wx:key="index">
+                                                <view class="weui-cell__hd weui-cell_primary">
+                                                    <image class="avatar" mode="aspectFit" src="{{notification.avatar||'https://img.hengyimonster.top/img/avatar_default.png'}}"></image>
+                                                </view>
+                                                <view class="weui-cell__bd">
+                                                    <view>{{notification.creator||'匿名用户'}}</view>
+                                                    <view class="text-small text-muted">填写了{{notification.form_name}}</view>
+                                                </view>
+                                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                                            </navigator>
+                                        </view>
+                                    </view>
+                                </view>
+                            </view>
+                        </view>
+                        <!-- 填表记录为零时 -->
+                        <view class="df" wx:else>
+                            <image mode="widthFix" src="{{suitWebp?'https://img.hengyimonster.top/img/team_work_Two_Color.webp':'https://img.hengyimonster.top/img/team_work_Two_Color.png'}}"></image>
+                            <view class="title">还未收集到任何数据</view>
+                            <view class="text-muted tips">当别人填写你的金数据表单，数据会出现在这里</view>
+                        </view>
+                    </view>
+
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
