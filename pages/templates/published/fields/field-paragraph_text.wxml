@@ -1,14 +1,14 @@
 <template name="field-paragraph_text-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations}}"></template>
         <text class="padding-control input-box" decode="{{true}}">&nbsp;</text>
         <text class="padding-control input-box" decode="{{true}}">&nbsp;</text>
     </view>
 </template>
 <template name="field-paragraph_text">
-    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
     <view class="field-box">
-        <textarea class="field-textarea form-input {{isIOS?'ios-textarea':''}}" style="font-size: 34rpx;" maxlength="100" name="{{api_code}}" value="{{value}}"></textarea>
+        <textarea class="field-textarea form-input {{isIOS?'ios-textarea':''}}" style="font-size: 34rpx;" maxlength="100" name="{{type + '-' + title}}" value="{{value}}"></textarea>
     </view>
 </template>
 <import src="display-title"></import>

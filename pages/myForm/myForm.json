@@ -1,0 +1,6 @@
+{
+    "usingComponents": {},
+    "navigationBarTitleText": "我的表单",
+    "onReachBottomDistance": 600,
+    "enablePullDownRefresh": true
+}

@@ -10,6 +10,6 @@
     <view class="bottom-split" style="margin:0 -30rpx;"></view>
     <form bind:submit="_formSubmit" reportSubmit="{{true}}">
         <template is="template-fields" data="{{fields:form.fields,shareMode:share,cooldowns:cooldowns,mobiles:mobiles,codeCountDowns:codeCountDowns,countDownTimers:countDownTimers}}"></template>
-        <button bindgetuserinfo="_getUserInfoAndSubmit" class="btn-sub {{form.processing>0?'disabled':''}}" disabled="{{form.processing>0}}" formType="submit" openType="getUserInfo"> 提交 </button>
+        <button bindgetuserinfo="_getUserInfoAndSubmit" class="btn-sub" formType="submit"  openType="getUserInfo" hidden="{{submitButton}}"> {{submitText}} </button>
     </form>
 </view>

@@ -1,0 +1,45 @@
+<!--pages/usage/usage.wxml-->
+<view class="page">
+  <view class="bd1">
+    <text class="info1">使用说明</text>
+    <text class="infoBox1">简单的了解如何使用<br/>可以更快的帮助你入门</text>
+    <text class="word1">设计“暨数据”之初创建了3种角色</text>
+    <view class="main1">
+      <view class="group1">
+        <view class="TextGroup1">
+          <view class="mod1">
+            <text class="word2">收集者：</text>
+            <view class="box1">
+                <view class="info2">你可以进行<text class="word3">创建/分享/管理</text>表单操作。当你<text class="word3">创建表单</text>的时候，会在关键的时间点上对你当前的表单数据进行有效期的缓存，方便你在退出之后仍然可以快速返回该表单继续创建表单。当你<text class="word3">创建完毕</text>的时候，就可以将自己的表单分享出去供他人进行填写从而进行信息收集工作。同时可以<text class="word3">对表单进行管理</text>，我们已经开发了相应的功能供用户使用，尽可能满足用户需求。</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="main2">
+      <view class="outer1">
+        <view class="TextGroup2">
+          <view class="section1">
+            <text class="word7">参与者：</text>
+            <view class="outer2">
+              <view class="info2">你可以进行对他人分享的表单进行填写。当你收到了他人的分享表单时，可以<text class="word3">点击相应链接进入小程序进行信息收集工作。随后</text><text class="word3">你的填写记录我们会及时推送给发布者，同时发布者可以管理你的表单</text>如果信息填写错误，<text class="word3">请及时联系发布者并标注该填写记录为无效并将告知发布者正确信息后发布者自己手动添加上你的记录。</text></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="main1">
+      <view class="group1">
+        <view class="TextGroup1">
+          <view class="mod1">
+            <text class="word2">管理员：</text>
+            <view class="box1">
+              <view class="info2">我们<text class="word3">将在2.0版本推出</text>Admin管理后台供超级管理员进行全局的管理，达到流量监控，用户管理等目的。</view>
+              <view class="word3">敬请期待...</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

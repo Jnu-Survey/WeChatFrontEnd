@@ -9,8 +9,9 @@
 
 .formHead {
     width: 700rpx;
-    margin: 30rpx auto;
-    padding: 50rpx 45rpx 0 45rpx;
+    margin: 45rpx auto;
+    margin-bottom: 15rpx;
+    padding: 30rpx 45rpx 0 45rpx;
     box-sizing: border-box;
     border-radius: 20rpx;
     background-color: rgb(255, 255, 255);
@@ -23,7 +24,11 @@
 .formTitle {
     text-align: center;
     font-size: 40rpx;
-    margin-bottom: 45rpx;
+    margin-bottom: 35rpx;
+}
+
+.formTitle::placeholder {
+    color: rgb(149, 151, 152);
 }
 
 .addQuestion {
@@ -31,7 +36,7 @@
     display: flex;
     margin: 0 auto;
     position: absolute;
-    bottom: 150rpx;
+    bottom: 140rpx;
     left: 50%;
     transform: translateX(-50%);
     justify-content: center;
@@ -62,8 +67,19 @@
 
 .preview {
     background-color: rgb(51, 51, 51);
-    padding: 20rpx 30rpx;
+    padding: 12rpx 30rpx;
     color: white;
     border-radius: 15rpx;
     border: 2px solid rgb(16, 142, 233);
 }
+
+.indexFixed{
+    z-index: 99;
+    position: fixed;
+    top:0;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background-color: #666;
+   }

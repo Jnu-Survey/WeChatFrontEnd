@@ -1,18 +1,18 @@
 <template name="field-rating-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
-        <view class="single-control label">
-            <view class="iconfont icon-star star-box {{(rating_max-1||0)<item+1?'star-active':''}}" wx:for="{{ratings||rating_max}}" wx:key="{{index}}"></view>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations}}"></template>
+        <view class="single-control title">
+            <view class="iconfont icon-star star-box {{(rating_max-1||0)<item+1?'star-active':''}}" wx:for="{{ratings||rating_max}}" wx:key="index"></view>
         </view>
     </view>
 </template>
 <template name="field-rating">
-    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
     <view class="weui-input" style="display: none;">
-        <slider bindchange="ratingChange" max="5" min="1" name="{{api_code}}" value="{{value}}"></slider>
+        <slider bindchange="ratingChange" max="5" min="1" name="{{title}}" value="{{value}}"></slider>
     </view>
     <view class="rate-box" style="height:72rpx;line-height:72rpx;margin-top:10rpx;font-size: 50rpx;">
-        <view bindtap="ratingChange" class="iconfont icon-star star-box {{(value||0)>=item+1?'active':''}}" data-field="{{api_code}}" data-no="{{item+1}}" wx:for="{{ratings||rating_max}}" wx:key="{{index}}"></view>
+        <view bindtap="ratingChange" class="iconfont icon-star star-box {{(value||0)>=item+1?'active':''}}" data-field="{{api_code}}" data-no="{{item+1}}" wx:for="{{ratings||rating_max}}" wx:key="index"></view>
     </view>
 </template>
 <import src="display-title"></import>

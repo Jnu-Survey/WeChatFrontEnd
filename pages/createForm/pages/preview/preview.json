@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "gd-form": "../../../../component/display-form/index",
+        "gd-empty-action-sheet": "../../../../component/empty-action-sheet/index"
+    },
+    "navigationBarTitleText": "表单预览"
+}

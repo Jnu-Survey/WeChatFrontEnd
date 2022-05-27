@@ -1,0 +1,10 @@
+<!--pages/logging/logging.wxml-->
+<view class="page">
+    <view class="header">更新日志</view>
+    <view class="headerTips">在这里我们会记录每一次更新</view>
+    <view>
+        <view class="date">2022-05-20</view>
+        <view class="content">1.0.0——正式开源</view>
+        <image src="{{imgServer}}/log_1.png" mode="widthFix" class="img"></image>
+    </view>
+</view>

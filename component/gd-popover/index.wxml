@@ -1,6 +1,0 @@
-<view class="popover" style="right:{{popoverRight}};top:{{popoverTop}}px;" wx:if="{{showPopover}}">
-    <view class="arrow"></view>
-    <view bindtap="closePopover" class="popover-close iconfont icon-close"></view> 点击 “ <view class="circle">
-        <text class="circle-lg"></text>
-    </view> ” 添加到我的小程序，{{text}}
-</view>

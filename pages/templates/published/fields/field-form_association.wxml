@@ -1,5 +1,5 @@
 <template name="field-form_association">
-    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    <view class="weui-cells__title"> {{title}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
     </view>
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">{{value.name}}</view>

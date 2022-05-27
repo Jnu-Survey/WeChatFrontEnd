@@ -1,0 +1,64 @@
+<!--pages/myForm/myForm.wxml-->
+<wxs module='filter'>
+  var includesList = function(list,currentIndex){
+    if(list){
+     return list.indexOf(currentIndex) > -1
+    }
+  }
+  module.exports.includesList =  includesList;
+</wxs>
+<view class="page">
+    <view class="page page-entries-index">
+        <view class="page__bd">
+            <view class="weui-tab__content tab-participated">
+                <!-- 我的表单为零时 -->
+                <view class="df" wx:if="{{!doneForm[0] && !doingForm}}">
+                    <image mode="widthFix" src="{{suitWebp?imgServer + '/Notifications_Monochromatic.webp':imgServer + '/Notifications_Monochromatic.png'}}"></image>
+                    <view class="title">还没有创建过表单</view>
+                    <view class="text-muted">当你创建了表单模板后，模板会出现在这里</view>
+                </view>
+                <!-- 我的表单不为零时 -->
+                <view>
+                    <view class="list">
+                        <!-- 正在制作的表单 -->
+                        <view class="section" wx:for="{{doingForm}}" wx:key="index">
+                            <view class="listTop doingCard" bindtap="openForm" data-index="{{index}}">
+                                <image class="icon" mode="widthFix" src="{{imgIconServer}}/forms.png"></image>
+                                <view class="listTopText">
+                                    <text class="title">{{item.Title}}</text>
+                                    <view class="time">{{item.Update}}</view>
+                                </view>
+                                <view class="divide"></view>
+                                <view class="tip">{{item.Tips}}</view>
+                                <view class="status doingText">状态：正在制作中</view>
+                            </view>
+                        </view>
+                        <!-- 制作完成的表单 -->
+                        <view class="container">
+                            <view wx:for="{{doneForm}}" wx:for-index="pageNum" id="item{{pageNum}}" wx:key="pageNum">
+                                <block wx:if="{{filter.includesList(visualIndex,pageNum)}}">
+                                    <view class="section" wx:for="{{item}}" wx:key="index">
+                                        <view class="listTop {{item.Ban===0?'collectingCard':'collectedCard'}}" bindtap="dataView" data-index="{{index}}" data-page-num="{{pageNum}}">
+                                            <image class="icon" mode="widthFix" src="{{imgIconServer}}/forms.png"></image>
+                                            <view class="listTopText">
+                                                <text class="title">{{item.Title}}</text>
+                                                <view class="time">{{item.Update}}</view>
+                                            </view>
+                                            <view class="divide"></view>
+                                            <view class="tip">{{item.Tips}}</view>
+                                            <view class="status {{item.Ban===0?'collectingText':'collectedText'}}">状态：{{item.Ban===0?"正在收集":"停止收集"}}</view>
+                                        </view>
+                                    </view>
+                                </block>
+                                <block wx:else>
+                                    <view class="item-visible" style="height:{{pageHeight[pageNum]}}px"></view>
+                                </block>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view wx:if="{{proInfoWindow}}" class="indexFixed"></view>

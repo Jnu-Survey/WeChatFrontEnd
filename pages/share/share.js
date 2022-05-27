@@ -1,51 +1,80 @@
 var t = require("../../@babel/runtime/helpers/interopRequireDefault"), e = require("../../utils/storage"), a = require("../../utils/storage-events"), o = t(require("../../utils/upgradeNotification")), i = require("../../utils/apis/user"), n = require("../../utils/apis/form"), r = require("../../utils/apis/env"), s = getApp();
+const getToken = require('../../common/getToken')
 
 Page({
     data: {
-        form: null,
+        form: {},
+        token:'',
+        formID:'',
         formToken: "",
         animationData: null,
         backdropAnimationData: null,
         qrCodeImg: null,
         qrCodeImgUrl: void 0,
-        showModalStatus: !1,
-        publishPageBaseURL: s.config.publishPageBaseURL
+        imgIconServer:s.globalData.imgIconServer,
+        apiServer:s.globalData.apiServer
     },
-    onLoad: function(t) {
-        var e = this;
-        this.setData({
-            formToken: t.formToken
-        }), n.show(t.formToken, function(t) {
-            200 === t.statusCode && e.setData({
-                form: t.data
-            }), 403 === t.statusCode && e.setData({
-                formFrozen: !0,
-                formFrozenErrorMsg: t.data.errors.join("，")
+    onLoad: function(options) { 
+        let formID = options.formID;
+        getToken.checkToken().then(Token=>{
+            // 成功获取token
+            this.setData({
+                token:Token,
+                formID:formID
+            })
+            // 请求表单的分享二维码
+            wx.request({
+                url:this.data.apiServer + '/manage/shareCode',
+                method:'GET',
+                data:{
+                    token:this.data.token,
+                    order:formID
+                },
+                success:(res)=> {
+                    this.getBase64ImageUrl(res.data.data.base64_image);
+                }
+            })
+            // 请求该表单的表单内容
+            wx.request({
+                url:this.data.apiServer + '/my_form/detailDone',
+                method:'GET',
+                data:{
+                    token:this.data.token,
+                    order:formID
+                },
+                success:(res)=> {
+                    this.setData({
+                        form:JSON.parse(res.data.data)
+                    })
+                }
+            })
+        }).catch(error=>{
+            //返回token失败
+            console.log("获取token失败！")
+            wx.showToast({
+                title: "获取token失败！",
+                icon: "error"
+            })
+            wx.navigateBack({
+                delta: 1
             });
-        }), this.fetchShareCard();
+        })
     },
+    //把base64转换成图片
+    getBase64ImageUrl: function (base64Url) {
+        /// 获取到base64Data
+        var base64ImgUrl = base64Url.replace(/[\r\n]/g, '') // 将回车换行换为空字符''
+        this.setData({
+            qrCodeImg:base64ImgUrl
+        })
+    },
+    // 点击“邀请好友填写”按钮转发
     onShareAppMessage: function() {
         return {
-            title: this.data.form.name,
-            desc: this.data.form.description,
-            path: "/pages/forms/publish?token=" + this.data.form.token,
-            imageUrl: "/assets/imgs/share-form-pic.png"
+            title: this.data.form.name || '快来填写我的表单吧！',  //转发标题
+            path: "/pages/show/show?scene=".concat(this.data.formID),   // 转发路径
+            imageUrl:this.data.imgIconServer + "/logo.png"  //转发显示的图片
         };
-    },
-    fetchShareCard: function() {
-        var t = this;
-        if (this.data.qrCodeImgUrl) return this.data.qrCodeImgUrl;
-        n.qrcode(this.data.formToken, null, function(e) {
-            var a = e.data && e.data.file && e.data.file.url;
-            return t.setData({
-                qrCodeImgUrl: a
-            }), a;
-        }, function(t) {
-            wx.showModal({
-                title: "提示",
-                content: "显示填表码失败"
-            });
-        });
     },
     openPublishedForm: function() {
         var t = "/pages/forms/publish?token=".concat(this.data.formToken);
@@ -56,64 +85,41 @@ Page({
             url: "/pages/template-home/index"
         });
     },
-    requestQrcode: function() {
-        var t = this;
-        return wx.showLoading({
-            mask: !0,
-            title: "填表码生成中"
-        }), new Promise(function(e, a) {
-            n.qrcode(t.data.formToken, function(o) {
-                var i = o.data.file.url;
-                t.setData({
-                    qrCodeImgUrl: i
-                }), wx.downloadFile({
-                    url: i,
-                    success: function(a) {
-                        t.setData({
-                            qrCodeImg: a.tempFilePath
-                        }), e();
-                    },
-                    fail: function(t) {
-                        wx.hideLoading(), wx.showModal({
-                            title: "错误",
-                            content: "下载二维码失败",
-                            showCancel: !1
-                        }), a();
-                    }
-                });
-            }, function(t) {
-                wx.hideLoading();
-            });
-        });
-    },
+    // 将二维码图片保存本地
     saveQrCode: function() {
-        var t = this, i = this;
         wx.showLoading({
             mask: !0,
             title: "保存中..."
-        }), this.requestQrcode().then(function() {
+        })
+        let imgSrc = this.data.qrCodeImg.replace('data:image/png;base64,',''); // base64编码
+        let file = wx.getFileSystemManager(); // 获取文件管理器对象
+        let number = Math.random();
+        // 用于写文件
+        file.writeFile({
+          filePath: wx.env.USER_DATA_PATH + '/pic' + number + '.png', // 表示生成一个临时文件名
+          data: imgSrc,  // 要写入的文本或二进制数据
+          encoding: 'base64',  //指定写入文件的字符编码
+          success: res => {
+            // 保存图片到手机
             wx.saveImageToPhotosAlbum({
-                filePath: t.data.qrCodeImg,
-                success: function(t) {
-                    wx.hideLoading(), wx.showToast({
-                        title: "已保存到相册，请发送给微信好友或在朋友圈发布。",
-                        icon: "none"
-                    }), (0, e.getStorage)(a.GD_SESSEION) && o.default.shouldNotice.call(i);
-                },
-                fail: function(t) {
-                    console.log("save qrcode err", t), wx.showModal({
-                        title: "错误",
-                        content: "保存二维码失败",
-                        showCancel: !1
-                    });
-                }
-            });
-        });
-    },
-    closeShareActionSheet: function() {
-        this.setData({
-            showModalStatus: !1
-        });
+              filePath: wx.env.USER_DATA_PATH + '/pic' + number + '.png',
+              success: function (res) {
+                wx.hideLoading();
+                wx.showToast({
+                  title: '已保存到相册',
+                })
+              },
+              fail: function (err) {
+                wx.hideLoading();
+                wx.showToast({
+                    title: '保存二维码失败',
+                  })
+              }
+            })
+          }, fail: err => {
+            console.log(err)
+          }
+        })
     },
     preview: function() {
         var t = "/pages/forms/publish?token=".concat(this.data.formToken, "&showShare=", !0);
@@ -130,6 +136,12 @@ Page({
                     title: "复制成功"
                 });
             }
+        });
+    },
+    // 关闭分享表单页面
+    closeActionSheet: function() {
+        this.setData({
+            shareModalVisible: !1
         });
     }
 });

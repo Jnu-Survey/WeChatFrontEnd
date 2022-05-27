@@ -1,18 +1,18 @@
 <!--pages/account/account.wxml-->
 <view class="page-profile">
-    <view class="top" style="background-image: url('https://img.hengyimonster.top/img/background.webp');">
+    <view class="top" style="background-image: url('{{imgServer}}/background.webp');">
         <view class="infoBox">
             <!-- 头像 -->
             <view class="user-icon">
-                <image class="user-icon" src="{{userInfo.avatarUrl||'https://img.hengyimonster.top/img/avatar_default.png'}}"></image>
+                <image class="user-icon" src="{{userInfo.avatarUrl||imgServer + '/avatar_default.png'}}"></image>
             </view>
             <!-- 用户信息 -->
             <view class="infoText">
                 <view class="userName">
                     {{userInfo.nickName || '用户名'}}
                 </view>
-                <view wx:if="{{!userInfo.nickName}}">
-                    登录尽享更多服务
+                <view>
+                    {{!userInfo.nickName?"登录尽享更多服务":"欢迎使用暨数据小程序"}}
                 </view>
             </view>
             <!-- 注册登录按钮 -->
@@ -26,6 +26,7 @@
             <view>{{formNum || 0}}</view>
             <view>表单数量</view>
         </view>
+        <view class="col"></view> 
         <view class="dataShowbox">
             <view>{{dataNum || 0}}</view>
             <view>数据量</view>
@@ -34,55 +35,71 @@
 
     </view>
 
-    <view class="profile-list">
-        <swiper autoplay="true" circular style="max-height: 200rpx;">
-            <swiper-item style="max-height: 100%;">
-                <!-- 暂时没有进行中的表单 -->
-                <view class="isDoing">
-                    <view class="title">正在进行</view>
-                    <view wx:if="{{!doingForm.length}}">
-                        <text>暂时没有进行中的表单</text>
-                    </view>
-                </view>
-            </swiper-item>
+    <view class="title">
+        <text class="doing">正在进行</text>
+        <text wx:if="{{doingForm.length===0}}" class="create" bindtap="goCreate">创建表单</text>
+        <text wx:else class="more" bindtap="goMyForm">查看更多</text>
+    </view>
+    <view>
+            <!-- 暂时没有进行中的表单 -->
+            <view wx:if="{{doingForm.length===0}}" class="profile-list">
+                <view class="noDoing">暂无正在进行中的表单</view>
+                <view class="createTip">点击右上角开始创建</view>
+            </view>
             <!-- 有正在进行中的表单 -->
-        </swiper>
+            <view wx:else class="swiperContaioner">
+                <swiper style="flex: 1;" current="{{current}}" bindchange="swiperChange" indicator-dots indicator-color="rgba(204,204,204,.3)" indicator-active-color="rgba(40, 117, 232,1)">
+                    <block wx:for="{{doingForm}}" wx:key="index">
+                        <swiper-item bindtap="continueEdit">
+                            <view class="swiper-list">
+                                <view  class="isDoing">
+                                    <view class="dointTitle">{{item.title}}</view>
+                                    <view class="dointTime">上次更新时间：{{item.time}}</view>
+                                    <view class="divide"></view>
+                                    <view class="dointTips">{{item.tip}}</view>
+                                </view>
+                            </view>
+                        </swiper-item>
+                    </block>
+                </swiper>
+            </view>
     </view>
 
+    <view class="title">个人中心</view>
     <view class="profile-list">
-        <view class="title">个人中心</view>
-        <view class="profile-box">
-            <image class="iconfont" mode="widthFix" src="../../assets/image/form.png"></image>
+        <view class="profile-box" bindtap="goMyForm">
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/form.png"></image>
             <text>我的表单</text>
-            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/right.png"></image>
         </view>
-        <view class="profile-box">
-            <image class="iconfont" mode="widthFix" src="../../assets/image/intro.png"></image>
+        <view class="profile-box" bindtap="goUsage">
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/intro.png"></image>
             <text>使用说明</text>
-            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/right.png"></image>
         </view>
     </view>
 
 
+    <view class="title">关于我们</view>
     <view class="profile-list">
-        <view class="title">关于我们</view>
-        <view class="profile-box">
-            <image class="iconfont" mode="widthFix" src="../../assets/image/team.png"></image>
+        <view class="profile-box" bindtap="goTeam">
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/team.png"></image>
                 <text>团队介绍</text>
-            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/right.png"></image>
         </view>
-        <view class="profile-box">
-            <image class="iconfont" mode="widthFix" src="../../assets/image/feedback.png"></image>
+        <view class="profile-box" bindtap="goFeedBack">
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/feedback.png"></image>
             <text>提交反馈</text>
-            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/right.png"></image>
         </view>
-        <view class="profile-box">
-            <image class="iconfont" mode="widthFix" src="../../assets/image/log.png"></image>
+        <view class="profile-box" bindtap="goLogging">
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/log.png"></image>
             <text>更新日志</text>
-            <image class="iconfont" mode="widthFix" src="../../assets/image/right.png"></image>
+            <image class="iconfont" mode="widthFix" src="{{imgIconServer}}/right.png"></image>
         </view>
     </view>
 
 
 </view>
+<view wx:if="{{proInfoWindow}}" class="indexFixed"></view>
 

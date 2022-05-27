@@ -1,0 +1,29 @@
+<!--pages/feedback/feedback.wxml-->
+<view class="page">
+  <view class="mod1">
+    <view class="TextGroup1">
+      <view class="outer1">
+        <text lines="1" class="txt1">说说你的看法</text>
+        <text lines="1" class="paragraph1">我们很乐意倾听你的建议与看法<br/>请将你的想法砸向我们</text>
+      </view>
+    </view>
+    <form bind:submit="submitFeedBack">
+        <view class="outer2">
+            <view class="group1">
+                <text lines="1" class="info1" >联系邮箱</text>
+                <input type="text" class="bd1" name="email" bindblur="checkEmail"/>
+                <view class="bd2">
+                <text lines="1" class="word1">主题</text>
+                <text lines="1" class="infoBox1"><br/></text>
+                </view>
+                <input type="text" class="bd3" name="title"/>
+                <textarea class="bd4" style="font-size: 42rpx;padding-top: 30rpx;" name="info" placeholder="说说你的看法"></textarea>
+            </view>
+        </view>
+        <button formType="submit" class="Button1">
+        <text class="info2">提交</text>
+        </button>
+    </form>
+  </view>
+</view>
+

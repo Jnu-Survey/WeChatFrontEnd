@@ -1,0 +1,10 @@
+<!--pages/dataReport/dataReport.wxml-->
+<view wx:if="{{dataList.length!==0}}">
+    <block wx:for="{{dataList}}" wx:key="index">
+        <canvas canvas-id="{{item.Kind}}" disable-scroll="true" class="canvas"></canvas>
+    </block>
+</view>
+<view wx:else>
+    <image src="{{imgServer}}/Data_Arranging.png" class="pic"></image>
+    <view class="empty">当前表单没有适用于图表展示的数据，当他人填写您的表单后页面会对单项选择、多项选择、地址等表单元素收集的数据进行可视化呈现</view>
+</view>

@@ -1,0 +1,10 @@
+<!--pages/shareFormDetails/shareFormDetails.wxml-->
+<view style="margin-top:21rpx;">
+    <gd-form form="{{form}}" token="{{token}}" submitButton="{{true}}"></gd-form>
+</view>
+<view>
+    <view class="form-operate">
+        <view bind:tap="copyShareForm" class="edit-btn" hoverClass="navigator-hover">复制该表单</view>
+    </view>
+</view>
+

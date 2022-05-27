@@ -1,20 +1,12 @@
 <template name="field-link-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations,pcMode:pcMode}}"></template>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations,pcMode:pcMode}}"></template>
         <!-- <text class="single-control" decode="{{true}}">&nbsp;</text> -->
     </view>
-
-    <!-- <view class="weui-cells__title"> 
-        <span style="color:red;" wx:if="{{validations.required}}">*</span>
-        {{label}} 
-    </view>
-    <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell">{{value}}</view>
-    </view> -->
 </template>
 
 <template name="field-link">
-    <view class="weui-cells__title"> {{label}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
+    <view class="weui-cells__title"> {{title}} <span style="color:red;" wx:if="{{validations.required}}">*</span>
     </view>
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">{{value}}</view>

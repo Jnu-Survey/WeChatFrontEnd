@@ -1,15 +1,25 @@
 {
     "pages": [
         "pages/home/home",
-        "pages/index/index",
         "pages/record/record",
-        "pages/person/person",
         "pages/account/account",
         "pages/create-form-list/create-form-list",
         "pages/create-form/create-form",
         "pages/field/field",
         "pages/preview/preview",
-        "pages/share/share"
+        "pages/myForm/myForm",
+        "pages/show/show",
+        "pages/recordDetails/recordDetails",
+        "pages/teamInfo/teamInfo",
+        "pages/feedBack/feedBack",
+        "pages/usage/usage",
+        "pages/share/share",
+        "pages/dataView/dataView",
+        "pages/addFormData/addFormData",
+        "pages/shareFormDetails/shareFormDetails",
+        "pages/dataReport/dataReport",
+        "pages/viewModel/viewModel",
+        "pages/logging/logging"
     ],
     "tabBar": {
         "borderStyle": "white",
@@ -39,14 +49,17 @@
         ]
     },
     "networkTimeout": {
-        "request": 10000,
-        "downloadFile": 10000
+        "request": 60000,
+        "downloadFile": 60000
     },
     "permission": {
         "scope.userLocation": {
           "desc": "你的位置信息将用于小程序位置接口的效果展示"
         }
     },
+    "requiredBackgroundModes": [
+        "location"
+    ],
     "subPackages": [],
     "window": {
         "navigationBarTitleText": "暨数据",

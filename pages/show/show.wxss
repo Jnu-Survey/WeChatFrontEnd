@@ -1,0 +1,94 @@
+/* pages/show/show.wxss */
+.page .panel-info {
+    margin-top: 10px;
+}
+
+.panel-info .weui-cell__ft {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+}
+
+.panel-info .title {
+    color: #000;
+    font-size: 34rpx;
+}
+
+.weui-cell {
+    min-height: 24rpx;
+}
+
+.weui-cell.text-list {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-left: 80rpx;
+}
+
+.weui-cell.text-list .item {
+    display: list-item;
+}
+
+.weui-cell.image-list {
+    flex-wrap: wrap;
+}
+
+.weui-cell.image-list .item {
+    margin: 40rpx;
+}
+
+.weui-cell.icon-with-text-list {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.weui-cell.icon-with-text-list .icon-with-text-item {
+    align-items: center;
+    display: flex;
+}
+
+.weui-cell.icon-with-text-list .icon-with-text-item+.icon-with-text-item {
+    margin-top: 10rpx;
+}
+
+.weui-cell.icon-with-text-list .icon-with-text-item .text {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.weui-cell.icon-with-text-list .icon-with-text-item .icon {
+    height: 64rpx;
+    width: 64rpx;
+}
+
+.wechat-avatar {
+    border: 1px solid #d2d7dc;
+    border-radius: 3px;
+    padding: 1px;
+}
+
+.wechat-info {
+    align-items: center;
+    background: #fff;
+    color: #8e9fa9;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 10px 15px;
+}
+
+.wechat-nickname {
+    max-width: 30vw;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.wechat-avatar,.wechat-gender,.wechat-nickname {
+    margin-right: 10px;
+}
+
+.custom-radio {
+    margin-right: 20rpx;
+}
+

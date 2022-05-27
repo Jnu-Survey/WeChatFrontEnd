@@ -1,11 +1,12 @@
 var t = require("../../@babel/runtime/helpers/interopRequireWildcard"), e = require("../../@babel/runtime/helpers/defineProperty"), o = t(require("../../utils/apis/form")), a = t(require("../../utils/apis/published-form")), n = t(require("../../pages/entry-fields")), i = t(require("../../utils/regexp_collect")), s = t(require("../../utils/util")), r = require("../../utils/storage"), c = require("../../utils/storage-events");
+const app = getApp();
 
 Component({
     properties: {
         token: {
             type: String,
             value: null,
-            observer: "_tokenChange"
+            // observer: "_tokenChange"
         },
         share: {
             type: Boolean,
@@ -19,9 +20,21 @@ Component({
             type: Object,
             value: null
         },
+        formId:{
+            type: String,
+            value: null,
+        },
         collectWechatInfo: {
             type: Boolean,
             value: !0
+        },
+        submitButton: {
+            type: Boolean,
+            value: !1
+        },
+        submitText: {
+            type: String,
+            value: '提交'
         }
     },
     data: {
@@ -31,7 +44,10 @@ Component({
         countDownTimers: {},
         isFullScreen: !1,
         submitData: null,
-        submitFormId: null
+        submitFormId: null,
+        apiServer:app.globalData.apiServer
+    },
+    onLoad:function() {
     },
     attached: function() {
         var t = this;
@@ -47,18 +63,11 @@ Component({
             wx.showLoading({
                 title: "Loading",
                 mask: !0
-            }), a.show(t, function(t) {
-                s.processFormFields(t.data.fields), e.setData({
-                    form: t.data
-                }), wx.hideLoading();
-            }, function(t) {
-                console.log(t), wx.hideLoading(), wx.showToast({
-                    title: "请求失败",
-                    icon: "none"
-                }), wx.navigateBack({
-                    delta: 1
-                });
-            });
+            })
+            s.processFormFields(this.properties.form.fields), e.setData({
+                form: this.properties.form
+            })
+            wx.hideLoading();
         },
         _getUserInfoAndSubmit: function(t) {
             if (this.data.form && !(this.data.share || this.data.form.processing > 0 || ("getUserInfo:ok" === t.detail.errMsg && (0, 
@@ -75,17 +84,135 @@ Component({
                 }), this.triggerEvent("subInfo", o);
             }
         },
-        _tokenChange: function(t) {
-            null != t && "" !== t && this.fetchForm(t);
-        },
+        // _tokenChange: function(t) {
+        //     // t为更新后的token
+        //     null != t && "" !== t && this.fetchForm(t);
+        // },
         _formSubmit: function(t) {
-            this.data.share ? wx.showModal({
-                content: "预览表单中不能提交数据",
-                showCancel: !1
-            }) : this.setData({
-                submitData: t.detail.value,
-                submitFormId: t.detail.formId
-            });
+            if(this.properties.share) {
+                wx.showModal({
+                    content: "预览表单中不能提交数据",
+                    showCancel: !1
+                })
+            }
+            else {
+                this.setData({
+                    submitData: t.detail.value,
+                    submitFormId: this.properties.formId
+                });
+                let form = {
+                    name:this.properties.form.name,
+                    description:this.properties.form.description,
+                    fields:{}
+                }
+                let typeKeys = []
+                let arr = [];
+                for (let key in this.data.submitData) {
+                    typeKeys.push(key.split('-')[0])
+                    arr.push({[key.split('-')[0]]:this.data.submitData[key]})
+                }
+                let typeObj = {};
+                let newFields = {};
+                arr.map((item,index)=>{
+                    if (typeKeys[index] in typeObj) {
+                        typeObj[typeKeys[index]]++;
+                    } else {
+                        typeObj[typeKeys[index]] = 0;
+                    }
+                    let newKey = typeKeys[index]+ '-' + typeObj[typeKeys[index]]
+                    let oldKey = typeKeys[index]
+                    newFields[newKey] = item[oldKey]
+                })
+                form.fields = newFields
+                // 提交参与者的填写数据
+                if(this.properties.submitText==='提交') {
+                    wx.request({
+                        url: this.data.apiServer + '/order/commit',
+                        method:"POST",
+                        data:{
+                            token:this.properties.token,
+                            order:this.data.submitFormId,
+                            form:JSON.stringify(form),
+                        },
+                        header: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        success:(res)=>{
+                            // 成功提交
+                            if(res.data.errno===0) {
+                                wx.showToast({
+                                    title: "表单提交成功！",
+                                    icon: "success",
+                                    duration:3000
+                                })
+                            }
+                            else {
+                                console.log("表单提交失败!\n",err)
+                                wx.showToast({
+                                    title: res.data.errmsg,
+                                    icon: "none",
+                                    duration:3000
+                                })
+                            }
+                        },
+                        fail:(err)=>{
+                            console.log("表单提交失败!\n",err)
+                            wx.showToast({
+                                title: "表单提交失败！",
+                                icon: "error",
+                                duration:3000
+                            })
+                        }
+                    })
+                }
+                // 提交制作者添加的数据
+                else {
+                    wx.request({
+                        url: this.data.apiServer + '/manage/commit',
+                        method:"POST",
+                        data:{
+                            token:this.properties.token,
+                            order:this.data.submitFormId,
+                            form:JSON.stringify(form),
+                        },
+                        header: {
+                            'content-type': 'application/x-www-form-urlencoded'
+                        },
+                        success:(res)=>{
+                            if(res.data.errno!==0) {
+                                wx.showToast({
+                                    title: res.data.errmsg,
+                                    icon: 'none',
+                                    duration:3000
+                                })
+                                setTimeout(()=>{
+                                    wx.navigateBack({
+                                        delta: 1
+                                    });
+                                },800)
+                            }
+                            else {
+                                wx.showToast({
+                                    title: "添加数据成功！",
+                                    icon: "success"
+                                })
+                                setTimeout(()=>{
+                                    wx.navigateBack({
+                                        delta: 1
+                                    });
+                                },800)
+                            }
+                        },
+                        fail:(err)=>{
+                            console.log("添加数据失败!\n",err)
+                            wx.showToast({
+                                title: "添加数据失败！",
+                                icon: "error"
+                            })
+                        }
+                    })
+                }
+            }
         },
         radioClick: function(t) {
             n.radioClick(this, t);
@@ -99,6 +226,12 @@ Component({
         dateChange: function(t) {
             n.dateChange(this, t);
         },
+        timeChange: function(t) {
+            n.timeChange(this, t);
+        },
+        locationChange: function(t) {
+            n.locationChange(this, t);
+        },
         dropDownChange: function(t) {
             n.dropDownChange(this, t);
         },
@@ -107,6 +240,15 @@ Component({
         },
         chooseImage: function(t) {
             n.chooseImage(this, t);
+        },
+        checkValidations: function(t) {
+            if(t.currentTarget.dataset.validations[0]==="presence" && t.detail.value==="") {
+                wx.showToast({
+                  title: t.currentTarget.dataset.title + '输入不能为空！',
+                  icon:'none',
+                  duration:5000
+                })
+            }
         },
         previewImage: function(t) {
             n.previewImage(this, t);

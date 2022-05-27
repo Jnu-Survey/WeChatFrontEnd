@@ -1,6 +1,6 @@
 {
     "navigationBarTitleText": "分享表单",
     "usingComponents": {
-        "gd-popover": "../../component/gd-popover/index"
+        "gd-empty-action-sheet": "../../component/empty-action-sheet/index"
     }
 }

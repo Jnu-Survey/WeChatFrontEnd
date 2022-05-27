@@ -1,4 +1,5 @@
 var e = require("../../@babel/runtime/helpers/interopRequireWildcard"), t = require("../../animations/index"), i = e(require("../../utils/util"));
+const app = getApp();
 
 Component({
     properties: {
@@ -12,84 +13,90 @@ Component({
         tagList:[
             "通用题目",
             "联系信息",
-            "分页",
             "描述"
         ],
+        imgIconServer:app.globalData.imgIconServer,
         commomFields: [ {
-            label: "单行文字",
+            title: "单行文字",
             type: "single_line_text",
-            icon: "../../assets/image/singleText.png"
+            icon: app.globalData.imgIconServer + "/singleText.png"
         }, {
-            label: "多行文字",
+            title: "多行文字",
             type: "paragraph_text",
-            icon: "../../assets/image/multiText.png"
+            icon: app.globalData.imgIconServer + "/multiText.png"
         }, {
-            label: "单项选择",
+            title: "单项选择",
             type: "single_choice",
-            icon: "../../assets/image/singleChoice.png"
+            icon: app.globalData.imgIconServer + "/singleChoice.png"
         }, {
-            label: "多项选择",
+            title: "多项选择",
             type: "multiple_choice",
-            icon: "../../assets/image/multiChoice.png"
-        }, {
-            label: "图片多选",
-            type: "multi_picture",
-            icon: "../../assets/image/multiImg.png"
-        },
+            icon: app.globalData.imgIconServer + "/multiChoice.png"
+        }, 
         {
-            label: "单级下拉框",
+            title: "单级下拉框",
             type: "drop_down",
-            icon: "../../assets/image/singleSelect.png"
-        },{
-            label: "二级下拉框",
-            type: "cascade_drop_down",
-            icon: "../../assets/image/multiSelect.png"
-        },{
-            label: "时间",
-            type: "time",
-            icon: "../../assets/image/time.png"
+            icon: app.globalData.imgIconServer + "/singleSelect.png"
         },
         {
-            label: "地理位置",
-            type: "geo_location",
-            icon: "../../assets/image/lication.png"
-        },{
-            label: "上传文件",
-            type: "attachment",
-            icon: "../../assets/image/upload.png"
-        },{
-            label: "网址",
-            type: "link",
-            icon: "../../assets/image/website.png"
+            title: "时间",
+            type: "time",
+            icon: app.globalData.imgIconServer + "/time.png"
         },
-         {
-            label: "日期",
+        {
+            title: "选择定位",
+            type: "geo_location",
+            icon: app.globalData.imgIconServer + "/lication.png"
+        },{
+            title: "上传文件",
+            type: "attachment",
+            icon: app.globalData.imgIconServer + "/upload.png"
+        },{
+            title: "网址",
+            type: "link",
+            icon: app.globalData.imgIconServer + "/website.png"
+        },
+        {
+            title: "地理位置",
+            type: "detail_location",
+            icon: app.globalData.imgIconServer + "/address.png"
+        },
+        {
+            title: "日期",
             type: "date",
-            icon: "../../assets/image/date.png"
+            icon: app.globalData.imgIconServer + "/date.png"
         }
         ],
         contactFields:[{
-            label: "姓名",
+            title: "姓名",
             type: "name",
-            icon: "../../assets/image/name.png"
+            icon: app.globalData.imgIconServer + "/name.png"
         },{
-            label: "邮箱",
+            title: "邮箱",
             type: "email",
-            icon: "../../assets/image/email.png"
+            icon: app.globalData.imgIconServer + "/email.png"
         },{
-            label: "电话",
+            title: "电话",
             type: "phone",
-            icon: "../../assets/image/phone.png"
+            icon: app.globalData.imgIconServer + "/phone.png"
         },{
-            label: "地址",
+            title: "地址",
             type: "address",
-            icon: "../../assets/image/address.png"
-        },],
+            icon: app.globalData.imgIconServer + "/address.png"
+        }
+        ],
+        descriptionField:[
+            {
+                title: "描述",
+                type: "temp_des",
+                icon: app.globalData.imgIconServer + "/intro.png"
+            }
+        ],
         bgAnimationData: {},
         animationData: {},
         isFullScreen: !1,
         clickedIndex: -1,  //面板中被选择的模板
-        clickedTag:0  //面板中被选择的tag
+        clickedTag:0,  //面板中被选择的tag
     },
     attached: function() {
         var e = this;
@@ -122,13 +129,22 @@ Component({
             // i为函数传的实参index,n为点击模块在列表中对应的item
             let t = this;
             let i = e.currentTarget.dataset;
-            let n = this.data.clickedTag===0?this.data.commomFields[i.index]:this.data.contactFields[i.index];
+            let n = {}
+            if(this.data.clickedTag===0) {
+                n = this.data.commomFields[i.index]
+            }
+            else if(this.data.clickedTag===1) {
+                n = this.data.contactFields[i.index]
+            }
+            else {
+                n = this.data.descriptionField[i.index]
+            }
             this.setData({
                 clickedIndex: i.index
             });
             let l = {
                 type: n.type,
-                label: n.label,
+                title: n.title,
                 notes: ""
             };
             setTimeout(function() {

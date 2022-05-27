@@ -1,29 +1,28 @@
 var t = require("../shared"), e = require("../../utils/apis/templates"), a = (getApp(), 
 require("../../utils/util")), o = require("../../utils/apis/form"), i = require("../../utils/apis/user"), n = require("../../utils/apis/env");
+const app = getApp();
 
 Page({
     data: {
         token: null,
         isFullScreen: !1,
         form: null,
+        formID:'',
         qrCodeImg: null,
         roundQrcodeImg: null,
-        shareModalVisible: !1
+        shareModalVisible: !1,
+        imgIconServer:app.globalData.imgIconServer
     },
     onLoad: function(n) {
         let eventChannel = this.getOpenerEventChannel();
-        let formID = '';
-        let form = {};
         eventChannel.on('sendCreatedForm',(data)=>{
-            formID = data.formID;
-            form = data.form;
+            let formID = data.formID;
+            let form = data.form;
+            this.setData({
+                form: form,
+                formID:formID
+            });
         })
-        this.setData({
-            form: form
-        });
-        wx.setNavigationBarTitle({
-            title: "模板创建"
-        });
         var s = this, r = n.template_id, l = n.form_token;
         r && (0, e.fetchTemplate)({
             template_id: r,
@@ -31,9 +30,6 @@ Page({
                 var a = (0, t.formatTpl)(e.data);
                 s.setData({
                     form: a
-                });
-                wx.setNavigationBarTitle({
-                    title: "模板创建"
                 });
             }
         }), l && (i.syncUserFromStroage(this), this.setData({
@@ -77,14 +73,22 @@ Page({
     pauseShare: function() {
         a.alert(this.data.gdUserInfo.toggles.enable_wx_form_share.desc);
     },
+    // onShareAppMessage: function() {
+    //     var t = this;
+    //     if (this.data.form && !this.options.template_id) return {
+    //         title: this.data.form.name,
+    //         path: "/pages/forms/publish?token=" + this.data.form.token,
+    //         success: function(e) {
+    //             upgradeNotification.shouldNotice.call(t);
+    //         }
+    //     };
+    // },
+    // 点击“邀请好友填写”按钮转发
     onShareAppMessage: function() {
-        var t = this;
-        if (this.data.form && !this.options.template_id) return {
-            title: this.data.form.name,
-            path: "/pages/forms/publish?token=" + this.data.form.token,
-            success: function(e) {
-                upgradeNotification.shouldNotice.call(t);
-            }
+        return {
+            title: this.data.form.name || '快来填写我的表单吧！',  //转发标题
+            path: "/pages/show/show?scene=".concat(this.data.formID),   // 转发路径
+            imageUrl:this.data.imgIconServer + "/logo.png"  //转发显示的图片
         };
     },
     copyFormUrl: function() {
@@ -129,7 +133,9 @@ Page({
         });
     },
     goShare: function() {
-        this.showShareModal();
+        wx.navigateTo({
+            url: "/pages/share/share?formID=".concat(this.data.formID)
+        });
     },
     createForm: function() {
         wx.navigateTo({

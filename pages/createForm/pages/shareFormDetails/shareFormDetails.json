@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "gd-form": "../../../../component/display-form/index"
+    },
+    "navigationBarTitleText": "导入的表单"
+}

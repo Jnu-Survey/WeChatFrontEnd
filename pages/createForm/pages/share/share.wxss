@@ -1,0 +1,115 @@
+.share-action-sheet {
+    height: 100%;
+    box-sizing: border-box;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 60rpx 0;
+}
+
+.share-action-sheet .header {
+    font-size: 45rpx;
+    margin-bottom: 50rpx;
+}
+
+.share-action-sheet .qrcode-container {
+    border: 1rpx solid #d9d9d9;
+    border-radius: 6rpx;
+    display: flex;
+    height: 550rpx;
+    justify-content: center;
+    margin-bottom: 100rpx;
+    overflow: hidden;
+    position: relative;
+    width: 550rpx;
+}
+
+.ghost-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(40, 117, 232);
+    color: white;
+    font-size: 36rpx;
+    padding: 20rpx 80rpx;
+    margin-bottom: 80rpx;
+    border-radius: 0;
+}
+
+.ghost-button image {
+    width: 50rpx;
+    margin-right: 15rpx;
+}
+
+.share-action-sheet .qrcode-tip {
+    bottom: 0;
+    color: #858585;
+    font-size: 30rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+}
+
+.share-action-sheet .qrcode-img {
+    height: 85%;
+    margin-top: 20rpx;
+    width: 85%;
+}
+
+.share-action-sheet .actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.share-action-sheet .actions .action-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 34rpx;
+    margin: 0 50rpx;
+    text-align: center;
+}
+
+.action-item image {
+    width: 50rpx;
+    margin-bottom: 20rpx;
+}
+
+.divider {
+    width: 100%;
+    height: 1px; 
+    position: relative;
+    background-color: #ccc;
+}
+
+.clearfix:after{
+    /*伪元素是行内元素 正常浏览器清除浮动方法*/
+    content: "";
+    display: block;
+    height: 0;
+    clear:both;
+    visibility: hidden;
+}
+
+.clearfix{
+    width: 100%;
+    zoom: 1;/*ie6清除浮动的方式 *号只有IE6-IE7执行，其他浏览器不执行*/
+    margin-bottom: 50rpx;
+}
+
+.divider-text{
+    position: absolute;  
+    background-color: white; 
+    padding: 20rpx;
+    color: #666;  
+    font-size: 30rpx;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}

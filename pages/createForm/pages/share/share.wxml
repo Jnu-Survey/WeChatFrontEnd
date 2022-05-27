@@ -1,0 +1,28 @@
+<view class="share-action-sheet {{isFullScreen?'is-full-screen':''}}">
+    <view class="header">
+        <text>表单创建成功，选择分享的方式</text>
+    </view>
+    <view class="qrcode-container">
+        <image class="qrcode-img" mode="scaleToFill" src="{{qrCodeImg}}"></image>
+        <view class="qrcode-tip">填写者识别小程序码即可填写</view>
+    </view>
+    <button bindtap="closeActionSheet" class="ghost-button" openType="share" size="default" style="width: 600rpx;">
+        <image src="../../assets/image/weChat.png" mode="widthFix"></image>
+        <view>邀请好友填写</view>
+    </button>
+    <view class="clearfix">
+        <view class="divider">
+        <view class="divider-text">更多分享方式</view>
+    </view>
+    </view>
+    <view class="actions">
+        <view bindtap="copyFormUrl" class="action-item">
+            <image src="../../assets/image/link.png" mode="widthFix"></image>
+            <view>复制链接</view>
+        </view>
+        <view bindtap="saveQrCode" class="action-item">
+            <image src="../../assets/image/save.png" mode="widthFix"></image>
+            <view>保存本地</view>
+        </view>
+    </view>
+</view>

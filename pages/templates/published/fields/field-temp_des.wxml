@@ -1,0 +1,11 @@
+<template name="field-temp_des-display">
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations,pcMode:pcMode}}"></template>
+    </view>
+</template>
+<template name="field-temp_des">
+    <view class="des_content">
+        <text>{{notes}}</text>
+    </view>
+</template>
+<import src="display-title"></import>

@@ -2,22 +2,22 @@
 <view class="page__bd">
     <view class="page">
         <!-- 题目和提示 -->
-        <input bind:change="updateField" class="title" id="label" placeholder="请输入题目" value="{{field.label}}"></input>
+        <input bind:change="updateField" class="editTitle" id="title" placeholder="请输入题目" value="{{field.title}}"></input>
             <textarea bind:blur="updateField" class="field-textarea" id="notes" name="notes" placeholder="点此输入提示" value="{{field.notes}}"></textarea>
         <block>
             <!-- 选择和下拉添加选项 -->
-            <view class="bg-white top-control left-control" hidden="{{field.type==='rating'?true:false}}" wx:if="{{field.supportChoices}}">
+            <view class="bg-white top-control left-control bottom-padding" hidden="{{field.type==='rating'?true:false}}" wx:if="{{field.supportChoices}}">
                 <view class="choice-options">
                     <!-- 已有选项 -->
-                    <view class="single-control" wx:for="{{field.choices}}" wx:key="{{index}}">
+                    <view class="single-control" wx:for="{{field.choices}}" wx:key="index">
                         <!-- 删除图标 -->
-                        <image bindtap="delOption" data-index="{{index}}" src="../../assets/image/delete.png" class="delIcon"></image>
+                        <image bindtap="delOption" data-index="{{index}}" src="{{imgIconServer}}/delete.png" class="delIcon"></image>
                         <!-- 输入框 -->
-                        <input bindblur="bindInputBlur" bindchange="bindOptionsChange" bindfocus="bindInputFocus" data-index="{{index}}" id="choices" value="{{item.name}}"></input>
+                        <input bindblur="bindInputBlur" bindchange="bindOptionsChange" bindfocus="bindInputFocus" data-index="{{index}}" id="choices" value="{{item.value}}"></input>
                     </view>
                     <!-- 增加选项 -->
                     <view bindtap="addOption" class="addOption">
-                        <image src="../../assets/image/addOption.png" class="addIcon"></image>
+                        <image src="{{imgIconServer}}/addOption.png" class="addIcon"></image>
                         <view>添加选项</view>
                     </view>
                 </view>
@@ -35,19 +35,6 @@
                     </view>
                 </view>
             </view>
-            <!-- 上传图片 -->
-            <view wx:if="{{field.type==='multi_picture'}}">
-                <view class="weui-cells__title">最大图片数量</view>
-                <view class="weui-cells weui-cells_after-title">
-                    <view class="weui-cell weui-cell_select">
-                        <view class="weui-cell__bd">
-                            <picker bindchange="bindMaxFileQuantityChange" id="max_file_quantity" range="{{[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]}}" value="{{field.max_file_quantity-1}}">
-                                <view class="weui-select">{{field.max_file_quantity || 1}}</view>
-                            </picker>
-                        </view>
-                    </view>
-                </view>
-            </view>
             <!-- 位置 -->
             <view wx:if="{{field.type==='geo_location'}}">
                 <view class="weui-cells weui-cells_after-title">
@@ -60,7 +47,7 @@
                 </view>
             </view>
             <!-- 必填 -->
-            <view class="mustBox">
+            <view class="mustBox" wx:if="{{field.type!='temp_des'}}">
                 <switch bindchange="bindRequiredChange" checked="{{required}}"></switch>
                 <view class="mustTip">必须填</view>
             </view>

@@ -2,23 +2,21 @@
     <view class="flex flex-middle">
         <view class="flex-1 flex flex-column padding-control">
             <view class="field-title"> 
-                <span style="color:red;" wx:if="{{validations.required}}">*</span>
-                {{label?label:'未命名'}}
+                <span style="color:red;" wx:if="{{validations.required || validations[0]}}">*</span>
+                {{title?title:'未命名'}}
             </view>
-            <view class="label" wx:if="{{!pcMode}}">{{notes}}</view>
+            <view class="title" wx:if="{{!pcMode}}">{{notes}}</view>
         </view>
-        <!-- <image src="../../../../assets/image/right.png" class="field-title-icon" mode="widthFix"></image> -->
     </view>
 </template>
-
 <template name="template-title">
     <view class="flex flex-middle">
         <view class="flex-1 flex flex-column">
             <view class="field-title"> 
-                <span style="color:red;" wx:if="{{validations.required}}">*</span>
-                {{label}}
+                <span style="color:red;" wx:if="{{validations.required || validations[0]}}">*</span>
+                {{title}}
             </view>
-            <view class="label">{{notes}}</view>
+            <view class="title">{{notes}}</view>
         </view>
     </view>
 </template>

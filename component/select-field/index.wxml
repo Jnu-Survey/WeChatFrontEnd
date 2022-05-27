@@ -15,14 +15,21 @@
     <view class="fields" wx:if="{{clickedTag===0}}">
         <view wx:for="{{commomFields}}" bind:tap="_selectField" class="field text-center" data-index="{{index}}" wx:key="index" data-type="{{item.type}}">
         <image class="icon-style" src="{{item.icon}}" mode="widthFix"></image> 
-        {{item.label}} 
+        {{item.title}} 
         </view>
     </view>
     <!-- 联系信息 -->
     <view class="fields" wx:if="{{clickedTag===1}}">
-        <view wx:for="{{contactFields}}" bind:tap="_selectField" class="field text-center" data-index="{{index}}" wx:key="{{index}}" data-type="{{item.type}}">
+        <view wx:for="{{contactFields}}" bind:tap="_selectField" class="field text-center" data-index="{{index}}" wx:key="index" data-type="{{item.type}}">
         <image class="icon-style" src="{{item.icon}}" mode="widthFix"></image> 
-        {{item.label}} 
+        {{item.title}} 
+        </view>
+    </view>
+    <!-- 描述 -->
+    <view class="fields" wx:if="{{clickedTag===2}}">
+        <view wx:for="{{descriptionField}}" bind:tap="_selectField" class="specialField text-center" data-index="{{index}}" wx:key="index" data-type="{{item.type}}">
+        <image class="icon-style" src="{{item.icon}}" mode="widthFix"></image> 
+        {{item.title}} 
         </view>
     </view>
 </view>

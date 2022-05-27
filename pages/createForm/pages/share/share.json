@@ -1,0 +1,6 @@
+{
+    "navigationBarTitleText": "分享表单",
+    "usingComponents": {
+        "gd-empty-action-sheet": "../../../../component/empty-action-sheet/index"
+    }
+}

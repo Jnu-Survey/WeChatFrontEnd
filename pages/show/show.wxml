@@ -1,0 +1,4 @@
+<!--pages/show/show.wxml-->
+<view style="margin-top:21rpx;">
+    <gd-form form="{{form}}" token="{{token}}" formId="{{formId}}" share="{{!1}}"></gd-form>
+</view>

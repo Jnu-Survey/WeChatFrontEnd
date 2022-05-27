@@ -1,13 +1,13 @@
 <template name="field-date-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations}}"></template>
         <text class="single-control label">年-月-日</text>
     </view>
 </template>
 <template name="field-date">
-    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
     <view class="field-box">
-        <picker bindchange="dateChange" id="field_{{api_code}}" mode="date" name="{{api_code}}" value="{{value}}">
+        <picker bindchange="dateChange" id="field_{{type}}" data-title="{{title}}" mode="date" name="{{type + '-' + title}}" value="{{value}}">
             <view class="form-input">{{value}}</view>
         </picker>
         <view class="weui-cell" wx:if="{{readonly}}">{{value}}</view>

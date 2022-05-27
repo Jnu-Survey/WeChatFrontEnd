@@ -1,11 +1,11 @@
 <template name="field-mobile-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations}}"></template>
         <view class="grey single-control">13200000000</view>
     </view>
 </template>
 <template name="field-mobile">
-    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
     <view class="field-box">
         <view class="flex icon-box">
             <view class="iconfont icon-field-mobile inline-control field-icon"></view>
@@ -16,7 +16,7 @@
     <view style="margin-top:20rpx;" wx:if="{{sms_verification&&!edit_mode}}">
         <view class="flex">
             <view class="mobile-box">
-                <input class="form-input" name="{{api_code+'_verification_token'}}" placeholder="验证码" style="width:100%;"></input>
+                <input class="form-input" name="{{type + '-' + title}}" placeholder="验证码" style="width:100%;"></input>
             </view>
             <view class="mobile-box text-center">
                 <view class="verification-area" wx:if="{{cooldowns[api_code]}}"> {{codeCountDowns[api_code]}}S后重发 </view>

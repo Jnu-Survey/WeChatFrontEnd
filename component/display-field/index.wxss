@@ -1,9 +1,13 @@
 .top-control {
-    margin-top: 30rpx;
+    margin-top: 20rpx;
 }
 
 .bottom-control {
     margin-bottom: 30rpx;
+}
+
+.bottom-padding {
+    padding-bottom: 20rpx;
 }
 
 .left-control {
@@ -23,11 +27,41 @@
 }
 
 .field-title {
+    font-size: 40rpx;
+    line-height: 50rpx;
+    color: #666;
+    font-weight: 600;
+}
+
+.title {
+    color: #999;
+    margin-top: 10rpx;
+}
+
+.des_title{
     font-size: 38rpx;
     line-height: 50rpx;
     height: 50rpx;
     color: #666;
     font-weight: 600;
+}
+
+.field-box {
+    border: 1px solid #c3c9d0;
+    border-radius: 2px;
+  }
+
+.form-input {
+    height: 40rpx;
+    width: 500rpx;
+    line-height: 40rpx;
+    padding: 15rpx 30rpx;
+    font-size: 32rpx;
+}
+
+.des_content {
+    font-size: 36rpx;
+    text-align: center;
 }
 
 .label {

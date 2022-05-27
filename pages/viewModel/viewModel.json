@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "gd-display-field": "../../component/display-field/index"
+    },
+    "navigationBarTitleText": "查看模板"
+}

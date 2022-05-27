@@ -85,6 +85,16 @@
     width: 33.33333%;
 }
 
+.specialField {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30rpx 20rpx;
+    width: 100%;
+}
+
 .icon-style {
     width: 70rpx;
     height: 70rpx;

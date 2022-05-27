@@ -1,0 +1,36 @@
+<!--pages/create-form-list/create-form-list.wxml-->
+<view class="create-form-list">
+    <view class="header">新建</view>
+    <view bindtap="openScene" class="create-empty-form" data-type="form">
+        <image src="https://img.hengyimonster.top/img/create-empty.png"></image>
+        <text class="empty-text">创建空白表单</text>
+    </view>
+    <view class="header">选择使用场景</view>
+    <view class="list">
+        <view bindtap="createScene" class="section" data-type="survey">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-survey.png"></image>
+            <text class="title">问卷调查</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="registry">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-registry.png"></image>
+            <text class="title">活动报名</text>
+        </view>
+        <view bindtap="createScene" class="section" data-type="vote">
+            <image class="icon" mode="aspectFit" src="https://img.hengyimonster.top/img/create-vote.png"></image>
+            <text class="title">投票评选</text>
+        </view>
+    </view>
+    <view class="shareHeader">共享表单</view>
+    <view class="import" bindtap="importForm">导入表单</view>
+    
+    <modal hidden="{{hiddenmodalput}}" title="请输入分享码" confirm-text="提交" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm"> 
+        <input type='text' placeholder="请输入分享码" auto-focus bindblur="getUserInput" name="shareCode"/>
+    </modal>
+
+    <view class="list" wx:for="{{shareFormList}}" wx:key="index">
+        <view class="section" bindtap="openShareForm" data-index="{{index}}">
+            <text class="title">{{item.name}}</text>
+        </view>
+    </view>
+</view>
+

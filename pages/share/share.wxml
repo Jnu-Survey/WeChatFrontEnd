@@ -1,51 +1,24 @@
-<view>
-    <view catchtouchmove class="commodity_attr_box" wx:if="{{!formFrozen}}">
-        <view class="popover-box">
-            <gd-popover storageKey="share" text="方便下次找到表单" top="20"></gd-popover>
-        </view>
-        <view>
-            <view class="share-card-box">
-                <view class="share-card-placeholder" style="height: 100%; background-image: url({{qrCodeImgUrl}});" wx:if="{{qrCodeImgUrl}}"></view>
-                <view class="share-card-text-placeholder" wx:if="{{!qrCodeImgUrl}}">载入中...</view>
-            </view>
-            <view class="share-card-tip">填表者识别小程序码即可填写</view>
-            <text class="share-card-tip published-link">{{publishPageBaseURL}}{{form.token}}</text>
-        </view>
-        <view class="share-section-main">
-            <view>
-                <button capture-bind:tap="closeShareActionSheet" class="share-to-wechat" openType="share" wx:if="{{!gdUserInfo.toggles||gdUserInfo.toggles.enable_wx_form_share.on}}">
-                    <view class="iconfont icon-wechat"></view> 邀请好友填写 </button>
-                <button bindtap="pauseShare" class="share-to-wechat" wx:else>
-                    <view class="iconfont icon-wechat"></view> 邀请好友填写 </button>
-            </view>
-            <view class="share-card-inline-link">
-                <text bind:tap="openPublishedForm">直接打开</text>
-                <text class="text-divide">|</text>
-                <text bind:tap="goToIndex">回到主页</text>
-            </view>
-        </view>
-        <view class="share-card-footer">
-            <view class="share-divide"></view>
-            <view class="share-list {{isFullScreen?'is-full-screen':''}}">
-                <button bindtap="saveQrCode" class="share-item">
-                    <view class="iconfont icon-ghost-download"></view> 保存填表码 </button>
-                <button bindtap="copyFormUrl" class="share-item">
-                    <view class="iconfont icon-ghost-link"></view> 复制链接 </button>
-                <navigator class="share-item" hoverClass="button-hover" url="/pages/forms/posters?formToken={{form.token}}">
-                    <view class="iconfont icon-ghost-qrcode"></view>
-                    <view class="share-label">填表码海报</view>
-                </navigator>
-                <navigator class="share-item" hoverClass="button-hover" url="/pages/forms/switch-status?formid={{form.token}}">
-                    <view class="iconfont icon-wechat-public"></view>
-                    <view class="share-label">嵌入公众号</view>
-                </navigator>
-            </view>
-        </view>
+<view class="share-action-sheet {{isFullScreen?'is-full-screen':''}}">
+    <view class="header">
+        <text>表单创建成功，选择分享的方式</text>
     </view>
-    <view class="form-errors" wx:if="{{formFrozen}}">
-        <view>
-            <view class="iconfont icon-warning-triangle warning-icon"></view>
-            <view class="error-content">{{formFrozenErrorMsg}}</view>
+    <view class="qrcode-container">
+        <image class="qrcode-img" mode="scaleToFill" src="{{qrCodeImg}}"></image>
+        <view class="qrcode-tip">微信识别小程序码即可填写</view>
+    </view>
+    <button bindtap="closeActionSheet" class="ghost-button" openType="share" size="default" style="width: 600rpx;">
+        <image src="{{imgIconServer}}/weChat.png" mode="widthFix"></image>
+        <view>邀请好友填写</view>
+    </button>
+    <view class="clearfix">
+        <view class="divider">
+        <view class="divider-text">更多分享方式</view>
+    </view>
+    </view>
+    <view class="actions">
+        <view bindtap="saveQrCode" class="action-item">
+            <image src="{{imgIconServer}}/save.png" mode="widthFix"></image>
+            <view>保存二维码到本地</view>
         </view>
     </view>
 </view>

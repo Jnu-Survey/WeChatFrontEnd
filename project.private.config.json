@@ -4,9 +4,23 @@
         "miniprogram": {
             "list": [
                 {
-                    "name": "pages/create-form/create-form",
-                    "pathName": "pages/create-form/create-form",
-                    "query": "",
+                    "name": "pages/show/show",
+                    "pathName": "pages/show/show",
+                    "query": "scene=ccdf768b496bbab2",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/test/test",
+                    "pathName": "pages/test/test",
+                    "query": "scene=ccdf768b496bbab2",
+                    "launchMode": "default",
+                    "scene": null
+                },
+                {
+                    "name": "pages/recordDetails/recordDetails",
+                    "pathName": "pages/recordDetails/recordDetails",
+                    "query": "formId=85daad622b2c1db6",
                     "launchMode": "default",
                     "scene": null
                 }

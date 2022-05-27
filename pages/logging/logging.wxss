@@ -1,0 +1,49 @@
+/* pages/logging/logging.wxss */
+.page {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: #F3F1F1;
+    padding-top: 42rpx;
+    overflow: auto;
+}
+
+.header {
+    width: 152rpx;
+    margin: 0 auto;
+    font-size: 38rpx;
+    font-family: Roboto-Regular, Roboto;
+    color: #383435;
+    line-height: 48rpx;
+}
+
+.headerTips {
+    margin: 16rpx auto;
+    font-size: 14px;
+    text-align: center;
+    font-family: Roboto-Regular, Roboto;
+    color: #6A6B6B;
+    line-height: 36rpx;
+}
+
+.date {
+    margin-left: 54rpx;
+    margin: 14rpx 0 12rpx 54rpx;
+    font-size: 28rpx;
+    font-family: Roboto-Regular, Roboto;
+    color: #FABB11;
+    line-height: 18px;
+}
+
+.content {
+    font-size: 38rpx;
+    margin: 0 0 12rpx 54rpx;
+    font-family: Roboto-Regular, Roboto;
+    color: #383435;
+    line-height: 24px;
+}
+
+.img {
+    width: 85%;
+    margin: 12rpx 0 0 54rpx;
+}

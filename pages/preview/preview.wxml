@@ -1,43 +1,38 @@
 <view style="margin-top:21rpx;">
-    <gd-form form="{{form}}" token="{{token}}"></gd-form>
+    <gd-form form="{{form}}" token="{{token}}" ></gd-form>
 </view>
 <view>
-    <view class="form-operate {{isFullScreen?'is-full-screen':''}}">
-        <view bind:tap="backEdit" class="edit-btn" hoverClass="navigator-hover">返回编辑</view>
+    <view class="form-operate">
         <view bind:tap="goShare" class="edit-btn" hoverClass="navigator-hover">分享表单</view>
     </view>
 </view>
 <gd-empty-action-sheet bind:backdropClicked="closeActionSheet" visible="{{shareModalVisible}}">
     <view class="share-action-sheet {{isFullScreen?'is-full-screen':''}}">
         <view class="header">
-            <!-- <view class="iconfont icon-checkbox"></view> -->
             <text>表单创建成功，选择分享的方式</text>
         </view>
         <view class="qrcode-container">
             <image class="qrcode-img" mode="scaleToFill" src="{{roundQrcodeImg}}"></image>
             <view class="qrcode-tip">填写者识别小程序码即可填写</view>
         </view>
-        <button bindtap="closeActionSheet" class="ghost-button" openType="share" wx:if="{{!gdUserInfo.toggles||gdUserInfo.toggles.enable_wx_form_share.on}}">
-            <image src="../../assets/image/weChat.png" mode="widthFix"></image>
-            <view>分享给好友</view>
+        <button bindtap="closeActionSheet" class="ghost-button" openType="share" wx:if="{{!gdUserInfo.toggles||gdUserInfo.toggles.enable_wx_form_share.on}}" size="default" style="width: 600rpx;">
+            <image src="{{imgIconServer}}/weChat.png" mode="widthFix"></image>
+            <view>邀请好友填写</view>
         </button>
+        <view class="clearfix">
+            <view class="divider">
+            <view class="divider-text">更多分享方式</view>
+        </view>
+        </view>
         <view class="actions">
             <view bindtap="copyFormUrl" class="action-item">
-                <image src="../../assets/image/link.png" mode="widthFix"></image>
+                <image src="{{imgIconServer}}/link.png" mode="widthFix"></image>
                 <view>复制链接</view>
             </view>
             <view bindtap="saveQrCode" class="action-item">
-                <image src="../../assets/image/save.png" mode="widthFix"></image>
+                <image src="{{imgIconServer}}/save.png" mode="widthFix"></image>
                 <view>保存本地</view>
             </view>
-            <!-- <view bindtap="pauseShare" class="action-item" wx:else>
-                <view class="iconfont icon-ghost-wechat"></view>
-                <view>分享给好友</view>
-            </view> -->
-            <!-- <navigator class="action-item" url="/pages/forms/posters?formToken={{token}}">
-                <view class="iconfont icon-ghost-qrcode"></view>
-                <view>填表码海报</view>
-            </navigator> -->
         </view>
     </view>
 </gd-empty-action-sheet>

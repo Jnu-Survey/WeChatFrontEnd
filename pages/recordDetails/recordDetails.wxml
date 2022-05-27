@@ -1,0 +1,137 @@
+<!--pages/recordDetails/recordDetails.wxml-->
+<view class="page">
+    <view class="block1">
+        <view class="outer1">
+            <view class="dataList">
+                <!-- 查看数据 -->
+                <view class="layer1" bindtap="dataView">
+                    <view class="ImageText1">
+                        <view class="outer2">
+                            <image class="wrap1" src="{{imgIconServer}}/recordDetail/dataView.png"></image>
+                            <view class="TextGroup1">
+                            <view class="bd1">
+                                <text lines="1" class="txt1">查看数据</text>
+                                <text lines="1" class="txt2">查看填写者提交的数据</text>
+                            </view>
+                            </view>
+                        </view>
+                    </view>
+                    <text lines="1" decode="true" class="word1">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 查看报表 -->
+                <view class="layer2" bindtap="reportView">
+                    <view class="ImageText2">
+                    <view class="wrap2">
+                        <image class="bd2" src="{{imgIconServer}}/recordDetail/reportView.png"></image>
+                        <view class="TextGroup2">
+                        <view class="section1">
+                            <text lines="1" class="info1">查看报表</text>
+                            <text lines="1" class="info2">自动分析部分字段数据</text>
+                        </view>
+                        </view>
+                    </view>
+                    </view>
+                    <text lines="1" decode="true" class="word2">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 添加数据 -->
+                <view class="layer3" bindtap="addFormData">
+                    <view class="ImageText3">
+                    <view class="section2">
+                        <image class="bd3" src="{{imgIconServer}}/recordDetail/addData.png"></image>
+                        <view class="TextGroup3">
+                        <view class="layer4">
+                            <text lines="1" class="word3">添加数据</text>
+                            <text lines="1" class="info3">可他人反馈后用于纠错</text>
+                        </view>
+                        </view>
+                    </view>
+                    </view>
+                    <text lines="1" decode="true" class="info4">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 打开表单 -->
+                <view class="layer3" bindtap="openForm">
+                    <view class="ImageText3">
+                    <view class="section2">
+                        <image class="bd3" src="{{imgIconServer}}/recordDetail/openForm.png"></image>
+                        <view class="TextGroup3">
+                        <view class="layer4">
+                            <text lines="1" class="word3">打开表单</text>
+                            <text lines="1" class="info3">查看表单模块内容</text>
+                        </view>
+                        </view>
+                    </view>
+                    </view>
+                    <text lines="1" decode="true" class="info4">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 分享表单 -->
+                <view class="layer5" bindtap="shareForm">
+                    <view class="ImageText4">
+                    <view class="group1">
+                        <image class="bd4" src="{{imgIconServer}}/recordDetail/shareForm.png"></image>
+                        <view class="TextGroup4">
+                        <view class="box1">
+                            <text lines="1" class="txt3">分享表单</text>
+                            <text lines="1" class="word4">将表单分享出去获得反馈</text>
+                        </view>
+                        </view>
+                    </view>
+                    </view>
+                    <text lines="1" decode="true" class="word5">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 分享模板 -->
+                <view class="layer6" bindtap="shareModule">
+                    <view class="ImageText5">
+                    <view class="outer3">
+                        <image class="mod1" src="{{imgIconServer}}/recordDetail/shareModel.png"></image>
+                        <view class="TextGroup5">
+                        <view class="box2">
+                            <text lines="1" class="word6">分享模版</text>
+                            <text lines="1" class="word7">拿到分享码，让他人使用</text>
+                        </view>
+                        </view>
+                    </view>
+                    </view>
+                    <text lines="1" decode="true" class="word8">&gt;</text>
+                </view>
+                <view class="divide"></view>
+                <!-- 表单开关 -->
+                <view class="layer7">
+                    <view class="ImageText6">
+                        <view class="group2">
+                            <image class="layer8" src="{{imgIconServer}}/open.png"></image>
+                            <view class="TextGroup6">
+                                <view class="layer9">
+                                    <text lines="1" class="txt4">表单开关</text>
+                                    <text lines="1" class="info5">关闭后将不能收集数据</text>
+                                </view>
+                            </view>
+                            <switch checked bindtap="collectOrNot"></switch>
+                        </view>
+                    </view>
+                </view>
+                <view class="divide"></view>
+            </view>
+            <view class="layer10">
+                <view class="TextGroup8" bindtap="copyForm">
+                    <view class="bd7">
+                        <text class="word10">复制表单</text>
+                        <text class="paragraph1">快速复制并创建相同的表单用于重新收集</text>
+                    </view>
+                </view>
+                <!-- 分割线 -->
+                <view class="bd6"></view>
+                <view class="TextGroup8" bindtap="deleteForm">
+                    <view class="bd7">
+                        <text class="word9">删除表单</text>
+                        <text class="paragraph1">删除表单后数据将会丢失并无法恢复</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

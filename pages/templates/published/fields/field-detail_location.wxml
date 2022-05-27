@@ -1,0 +1,18 @@
+<!-- 制作表单展示部分 -->
+<template name="field-detail_location-display">
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations,pcMode:pcMode}}"></template>
+        <text class="single-control title">省-市-区</text>
+    </view>
+</template>
+<!-- 用户输入 -->
+<template name="field-detail_location">
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
+    <view class="field-box">
+        <picker bindchange="locationChange" id="field_{{type}}" data-title="{{title}}" mode="region" name="{{type + '-' + title}}" value="{{value}}">
+            <view class="form-input">{{value}}</view>
+        </picker>
+        <view class="weui-cell" wx:if="{{readonly}}">{{value}}</view>
+    </view>
+</template>
+<import src="display-title"></import>

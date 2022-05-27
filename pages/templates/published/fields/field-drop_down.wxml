@@ -1,22 +1,22 @@
 <template name="field-drop_down-display">
-    <view class="bg-white top-control left-control">
-        <template is="display-title" data="{{label:label,notes:notes,validations:validations}}"></template>
-        <text class="single-control label">请选择...</text>
+    <view class="bg-white top-control left-control bottom-padding">
+        <template is="display-title" data="{{title:title,notes:notes,validations:validations}}"></template>
+        <text class="single-control title">请选择...</text>
     </view>
 </template>
 <template name="field-drop_down">
-    <template is="template-title" data="{{label:label,notes:notes,validations:validations}}"></template>
+    <template is="template-title" data="{{title:title,notes:notes,validations:validations}}"></template>
     <view class="field-box">
         <view class="form-input" wx:if="{{!readonly}}">
-            <picker bindchange="dropDownChange" id="field_{{api_code}}" mode="selector" range="{{choices}}" rangeKey="value" value="{{choiceIndex}}" data-index="{{choiceIndex}}">
+            <picker bindchange="dropDownChange" id="field_{{type}}" data-title="{{title}}" mode="selector" range="{{choices}}" range-key="value" value="{{choiceIndex}}" data-item="{{choices[index]}}">
                 <view class="flex space-between">
                     <view>{{choices[choiceIndex].value||'请选择...'}}</view>
                     <view class="iconfont icon-arrow icon-arrow-down"></view>
                 </view>
             </picker>
-            <input hidden="true" name="{{api_code}}" type="text" value="{{choices[choiceIndex].value}}"></input>
+            <input hidden="true" name="{{type + '-' + title}}" type="text" value="{{choices[choiceIndex].value}}" bindblur="checkValidations" data-validations="{{validations}}" data-title="{{title}}"></input>
         </view>
-        <view class="weui-cell" wx:if="{{readonly}}">{{choices[choiceIndex].name}}</view>
+        <view class="weui-cell" wx:if="{{readonly}}">{{choices[choiceIndex].value}}</view>
     </view>
 </template>
 <import src="display-title"></import>

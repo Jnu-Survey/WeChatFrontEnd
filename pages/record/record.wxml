@@ -3,7 +3,6 @@
     <view class="page page-entries-index">
         <view class="page__bd">
             <view class="weui-tab">
-            
                 <!-- 导航栏“我填的表”和“填我的表”-->
                 <view class="weui-navbar">
                     <view bindtap="tabClick" class="weui-navbar__item {{activeIndex===index?'weui-bar__item_on':''}}" id="{{index}}" wx:for="{{tabs}}" wx:key="index">
@@ -13,40 +12,54 @@
 
                 <view class="weui-tab__panel">
                     <!-- “我填的表”对应表项 -->
-                    <view class="weui-tab__content tab-participated" hidden="{{activeIndex!==0}}">
-                        <!-- 填表记录不为零时 -->
-                        <view class="weui-panel" wx:if="{{participatedForms.length}}">
-                            <view bindtap="goIntoParticipatedFormDetail" class="weui-media-box weui-media-box_appmsg" data-token="{{item.token}}" hoverClass="weui-cell_active" wx:for="{{participatedForms}}" wx:key="index">
-                                <template is="form-list-item" data="{{...item}}"></template>
+                    <view class="weui-tab__content" hidden="{{activeIndex!==0}}">
+                        <!-- 表单记录列表 -->
+                        <view class="formList" wx:if="{{participatedForms.length}}">
+                            <view class="recordItem1" wx:for="{{participatedForms}}" wx:key="index">
+                                <view class="outer">
+                                    <view class="layer1">
+                                        <!-- 用户头像 -->
+                                        <image src="{{item.avatar_url}}" class="mod5"></image>
+                                        <view class="formUp">
+                                            <text lines="1" class="formTitle">{{item.title}}</text>
+                                            <view class="timeAndStatus">
+                                                <text lines="1" decode="true" class="time">{{item.update_time}}</text>
+                                                <text lines="1" class="{{item.is_ban==='正在收集'?'status1':'status2'}}">{{item.is_ban}}</text>
+                                            </view>
+                                        </view>
+                                    </view>
+                                    <view class="divide"></view>
+                                    <view class="layer2">
+                                        <text lines="1" class="des">{{item.tips}}</text>
+                                        <text lines="1" class="author">From：{{item.nickname}}</text>
+                                    </view>
+                                </view>
                             </view>
                         </view>
                         <!-- 填表记录为零时 -->
                         <view class="df" wx:else>
-                            <image mode="widthFix" src="{{suitWebp?'https://img.hengyimonster.top/img/fortnite_two_color.webp':'https://img.hengyimonster.top/img/fortnite_two_color.png'}}"></image>
+                            <image mode="widthFix" src="{{suitWebp?imgServer + '/fortnite_two_color.webp':imgServer + '/fortnite_two_color.png'}}"></image>
                             <view class="title">还没有为其它表单填写过数据</view>
-                            <view class="text-muted">当你填写别人的金数据表单，数据会出现在这里</view>
+                            <view class="text-muted">当你填写别人的表单后，数据会出现在这里</view>
                         </view>
                     </view>
 
                     <!-- “填我的表”对应表项 -->
                     <view class="weui-tab__content" hidden="{{activeIndex!==1}}">
                         <!-- 填表记录不为零时 -->
-                        <view class="weui-panel" wx:if="{{collectedEntryList.length}}">
-                            <view wx:for="{{collectedEntryList}}" wx:key="index">
-                                <view class="weui-panel__hd">{{item.date}}</view>
-                                <view class="weui-panel__bd">
-                                    <view class="weui-media-box weui-media-box_small-appmsg mine-box">
-                                        <view class="weui-cells weui-cells_in-small-appmsg">
-                                            <navigator class="weui-cell weui-cell_access" hoverClass="weui-cell_active" url="/pages/forms/show?token={{notification.form_token}}" wx:for="{{item.notifications}}" wx:for-item="notification" wx:key="index">
-                                                <view class="weui-cell__hd weui-cell_primary">
-                                                    <image class="avatar" mode="aspectFit" src="{{notification.avatar||'https://img.hengyimonster.top/img/avatar_default.png'}}"></image>
-                                                </view>
-                                                <view class="weui-cell__bd">
-                                                    <view>{{notification.creator||'匿名用户'}}</view>
-                                                    <view class="text-small text-muted">填写了{{notification.form_name}}</view>
-                                                </view>
-                                                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
-                                            </navigator>
+                        <view class="formList" wx:if="{{collectedEntryList.length!==0}}">
+                            <view class="recordItem2" wx:for="{{collectedEntryList}}" wx:key="index">
+                                <view class="wrap1-0 animate__animated animate__slideInLeft">
+                                    <!-- 用户头像 -->
+                                    <image src="{{item.avatar_url}}" class="group2-0"></image>
+                                    <view class="TextGroup1-0">
+                                        <view class="bd1-0">
+                                            <view class="row">
+                                                <text lines="1" class="txt3-0">{{item.title}}</text>
+                                                <text lines="1" class="txt2-0" bindtap="setInvalid" data-index="{{index}}">{{validText}}</text>
+                                            </view>
+                                            <text lines="1" decode="true" class="info3-0">{{item.update_time}}</text>
+                                            <text lines="1" class="word2-0">From：{{item.nickname}}</text>
                                         </view>
                                     </view>
                                 </view>
@@ -54,9 +67,9 @@
                         </view>
                         <!-- 填表记录为零时 -->
                         <view class="df" wx:else>
-                            <image mode="widthFix" src="{{suitWebp?'https://img.hengyimonster.top/img/team_work_Two_Color.webp':'https://img.hengyimonster.top/img/team_work_Two_Color.png'}}"></image>
+                            <image mode="widthFix" src="{{suitWebp?imgServer + '/team_work_Two_Color.webp':imgServer + '/team_work_Two_Color.png'}}"></image>
                             <view class="title">还未收集到任何数据</view>
-                            <view class="text-muted tips">当别人填写你的金数据表单，数据会出现在这里</view>
+                            <view class="text-muted tips">当别人填写你的表单后，数据会出现在这里</view>
                         </view>
                     </view>
 
@@ -65,3 +78,4 @@
         </view>
     </view>
 </view>
+<view wx:if="{{proInfoWindow}}" class="indexFixed"></view>

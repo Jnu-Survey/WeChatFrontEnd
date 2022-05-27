@@ -14,7 +14,8 @@ Page({
             choices: []
         },
         sms_signature: void 0,
-        pcMode: !1
+        pcMode: !1,
+        imgIconServer:i.globalData.imgIconServer
     },
     _supportChoices: function() {
         return [ "single_choice", "multiple_choice", "drop_down", "rating" ].indexOf(this.data.field.type) >= 0;
@@ -69,7 +70,7 @@ Page({
                 };
             })) : i = [ 1, 2, 3 ].map(function(t) {
                 return {
-                    name: "选项" + t
+                    value: "选项" + t
                 };
             }), e["field.choices"] = i;
         }
@@ -101,19 +102,19 @@ Page({
         i[t.currentTarget.id] = e, this.setData(i);
     },
     bindTypeChange: function(t) {
-        var i = parseInt(t.detail.value, 10), a = this.data.field.migrateToFields[i].type, s = this.data.field.type, n = this.data.field.label;
+        var i = parseInt(t.detail.value, 10), a = this.data.field.migrateToFields[i].type, s = this.data.field.type, n = this.data.field.title;
         n === e.mapping[s].name && (n = e.mapping[a].name), t.detail.value = a, this.setData({
             typeIndex: i,
             "field.type": a,
             "field.typeName": e.mapping[a].name,
-            "field.label": n
+            "field.title": n
         }), this.updateField(t), this.setDefault();
     },
     bindOptionsChange: function(t) {
         var e = t.detail.value;
         if(e) {
             this.setData({
-                ["field.choices["+t.currentTarget.dataset.index+"].name"]:e
+                ["field.choices["+t.currentTarget.dataset.index+"].value"]:e
             })
         }
     },
@@ -160,37 +161,31 @@ Page({
         });
     },
     saveField: function() {
-        var t = this.checkFieldErrors();
-        if (t) return wx.showModal({
-            title: "错误",
-            content: t.join("、"),
-            showCancel: !1
-        }), !1;
-        var e = {};
-        for (var s in this.data) a.checkValidationExist(s) && (e[s] = this.data[s]);
-        var n = this.data.field;
-        n.validations = e, this.setData({
-            field: n
-        }), 
-        i.PubSub.publish("gd_field_edit", {
-            field: n,
-            sms_signature: this.data.sms_signature
-        }),
-        wx.navigateBack({
-            delta: 1
-        });
+        let t = this.checkFieldErrors();
+        if(t) {
+            var e = {};
+            for (var s in this.data) a.checkValidationExist(s) && (e[s] = this.data[s]);
+            var n = this.data.field;
+            n.validations = e, this.setData({
+                field: n
+            }), 
+            i.PubSub.publish("gd_field_edit", {
+                field: n,
+                sms_signature: this.data.sms_signature
+            }),
+            wx.navigateBack({
+                delta: 1
+            });
+        }
     },
     checkFieldErrors: function() {
-        var t = [], e = this.data.field.label.trim();
-        (this.setData({
-            "field.label": e
-        }), s(e) && t.push("字段名称不能为空，请补全！"), this.data.field.choices) && (this.data.field.choices.some(function(t) {
-            return s(t.name);
-        }) && t.push("请补全字段选项！"));
-        if (this.data.field.sms_verification) {
-            var i = (this.data.sms_signature || "").replace(/\s+/g, "");
-            i.length ? (i.length < 3 || i.length > 8) && t.push("签名必须为3-8个汉字。") : t.push("签名不能为空，请补全！");
+        if(this.data.field.title.trim()===this.data.field.typeName) {
+            wx.showModal({
+                title: "提示",
+                content: "请自定义题目名称！"
+            })
+            return false
         }
-        return !!t.length && t;
+        return true;
     }
 });

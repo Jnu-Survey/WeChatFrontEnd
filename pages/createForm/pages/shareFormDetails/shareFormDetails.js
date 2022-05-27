@@ -1,0 +1,99 @@
+// pages/shareFormDetails/shareFormDetails.js
+const getToken = require('../../../../common/getToken')
+Page({
+
+    /**
+     * 页面的初始数据
+     */
+    data: {
+        formID:'',
+        form:{},
+        token:''
+    },
+
+    /**
+     * 生命周期函数--监听页面加载
+     */
+    onLoad(options) {
+        for(let i=0;i<5;i++) {
+            options.formData = options.formData.replaceAll('-'+i,'')
+        }
+        getToken.checkToken().then(data=>{
+            this.setData({
+                token:data,
+                formID:options.formID,
+                form:JSON.parse(options.formData)
+            })
+        }).catch(error=>{
+            //返回token失败
+            console.log(error);
+        })
+    },
+
+    // 复制导入表单
+    copyShareForm:function () {
+        wx.request({
+            url: 'https://api.hengyimonster.top/manage/copyForm',
+            data:{
+                token:this.data.token,
+                order:this.data.formID
+            },
+            success:(res)=>{
+                wx.showToast({
+                  title: '复制表单成功！请返回我的表单查看',
+                  icon:'none',
+                  duration:3000
+                })
+            }
+          })
+    },
+
+    /**
+     * 生命周期函数--监听页面初次渲染完成
+     */
+    onReady() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面显示
+     */
+    onShow() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面隐藏
+     */
+    onHide() {
+
+    },
+
+    /**
+     * 生命周期函数--监听页面卸载
+     */
+    onUnload() {
+
+    },
+
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh() {
+
+    },
+
+    /**
+     * 页面上拉触底事件的处理函数
+     */
+    onReachBottom() {
+
+    },
+
+    /**
+     * 用户点击右上角分享
+     */
+    onShareAppMessage() {
+
+    }
+})

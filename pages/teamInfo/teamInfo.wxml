@@ -1,0 +1,71 @@
+<!--pages/teamInfo/teamInfo.wxml-->
+<view class="page">
+  <view class="bd1">
+    <view class="TextGroup1">
+      <view class="group1">
+        <text decode="true" class="txt1">Who&nbsp;We&nbsp;Are</text>
+        <text class="paragraph1">在这里你可以了解到我们的团队组成，团队分工，设计理念等</text>
+      </view>
+    </view>
+    <view class="wrap1">
+      <view class="block1">
+        <view class="group2">
+          <text lines="1" class="word1">团队成员</text>
+        </view>
+        <view class="group3">
+          <view class="group4">
+            <view class="box1">
+              <view class="bd2"></view>
+              <view class="bd3">
+                <text lines="1" class="info1">HengY1Coding</text>
+                <text lines="1" class="info2">✨</text>
+              </view>
+            </view>
+            <text lines="1" class="word2">职责：产品；UI；后端研发；测试；</text>
+            <view class="box2">
+              <view class="main1"></view>
+              <text lines="1" class="word3">MMMMMMaxuan</text>
+            </view>
+            <text lines="1" class="info3">职责：前端研发；</text>
+            <view class="box3">
+              <view class="group5"></view>
+              <text lines="1" class="word4">BatchClayderman</text>
+            </view>
+            <text lines="1" class="word5">职责：PPT汇报；产品报告</text>
+            <view class="box4">
+              <view class="block2"></view>
+              <text lines="1" class="word6">chenccc0127</text>
+            </view>
+            <text lines="1" class="word7">职责：PPT汇报；产品报告</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="bd4">
+        <view class="outer1">
+            <text lines="1" class="word8">设计理念</text>
+        </view>
+        <view class="outer2">
+            <view class="paragraphs">市面上已经存在了金数据等问卷调查商业软件，<text style="font-weight: bold;">但是存在问卷系统两级分化的痛点。</text></view>
+            <view class="paragraphs">经过我们的分析:老版本问卷调查任然为N年前画风,用户体验,产品功能都不尽人意。而新时代产品逐渐商业化，个人用户大部分功能进行阉割，<text style="font-weight: bold;">免费版功能都得不到满足。</text></view>
+            <view class="paragraphs">在此基础上我们就想借助软件工程此课程的大作业这个机会，<text style="font-weight: bold;">研发一款高并发,低延时的问卷系统。</text>不仅能够满足日常大部分的产品需求，还尽可能保证用户体验。</view>
+            <view class="paragraphs">同时我们也将完全开源前后端源码，并提供不定时的维护，<text style="font-weight: bold;">为二次开发方便功能的横向与纵向的拓展。</text></view>
+        </view>
+    </view>
+    <view class="wrap2">
+      <view class="block1">
+        <view class="group2">
+          <text lines="1" class="word1">项目概况</text>
+        </view>
+        <view class="group3">
+          <view class="group4">
+            <view class="info4">开源地址：</view>
+            <view class="info4 space">github.com/Jnu-Survey</view>
+            <view class="info4">主要框架/工具:</view>
+            <view class="info4">微信开发者工具；ApiFox；MasterGo；Sketch；Gin；Mysql；MongoDb；RabbitMQ；Redis</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

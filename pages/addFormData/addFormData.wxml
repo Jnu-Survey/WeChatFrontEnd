@@ -1,0 +1,4 @@
+<!--pages/addFormData/addFormData.wxml-->
+<view style="margin-top:21rpx;">
+    <gd-form form="{{form}}" token="{{token}}" submitText="添加数据" share="{{!1}}" formId="{{formID}}"></gd-form>
+</view>

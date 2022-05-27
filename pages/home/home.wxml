@@ -1,37 +1,26 @@
 <!--pages/home/home.wxml-->
 <view class="homePage">
     <!-- 轮播图 -->
-    <view style="height: 830rpx;display: flex;flex-direction: column;margin-bottom: 20rpx;">
-    <swiper style="flex: 1;" indicator-dots="{{true}}" indicator-color="rgba(204,204,204,.3)" 	indicator-active-color="rgba(40, 117, 232,1)" autoplay="{{true}}" interval="{{3000}}" circular 	previous-margin="100rpx" next-margin="100rpx">
-        <block wx:for="{{swiperItem}}" wx:key="index">
-            <swiper-item>
-                <view class="swiper-item">
-                    <image src="{{item}}" alt="" style="width: 480rpx;border-radius: 20rpx;" mode="widthFix"/>
-                </view>
-                <!-- <view class="swiper-item" style="background: linear-gradient(rgba(250, 246, 246, 0.527),{{item.backgroundColor}});">
-                    <text class="title">{{item.title}}</text>
-                    <view>
-                        <image src="{{item.img}}" style="width: 500rpx;height:450rpx;margin: 40rpx auto;border-radius: 40rpx;"></image>
+    <view class="homeSwiper" style="margin:{{margin}} 0;">
+        <swiper style="flex: 1;" indicator-dots="{{true}}" indicator-color="rgba(204,204,204,.3)" 	indicator-active-color="rgba(40, 117, 232,1)" autoplay="{{true}}" interval="{{2500}}" circular 	previous-margin="100rpx" next-margin="100rpx">
+            <block wx:for="{{swiperItem}}" wx:key="index">
+                <swiper-item>
+                    <view class="swiper-item" bindtap="createScene" data-index="{{index}}">
+                        <image src="{{item.img}}" alt="" style="width: 480rpx;border-radius: 20rpx;" mode="widthFix"/>
                     </view>
-                    <view style="display: flex;">
-                        <view style="margin-left: 220rpx;margin-right: 30rpx;" hidden="{{clickHide}}">
-                            <image src="https://img.hengyimonster.top/img/point1.png" style="width: 100rpx;" mode="widthFix"></image>
-                        </view>
-                        <text style="color: rgb(100, 98, 98);" wx:if="{{goToModule}}">点击查看问卷模板</text>
-                    </view>
-                </view> -->
-            </swiper-item>
-        </block>
-    </swiper>
+                </swiper-item>
+            </block>
+        </swiper>
     </view>
 
     <view class="formEntry">
-        <view class="formEntryBox" bindtap="judgeToken">
-            <image class="entryIcon" src="https://img.hengyimonster.top/img/button_1.png" mode="widthFix"></image>
+        <view class="formEntryBox" bindtap="goCreate">
+            <image class="entryIcon" src="{{quickStartImg}}" mode="widthFix"></image>
         </view>
-        <view class="formEntryBox">
-            <image class="entryIcon" src="https://img.hengyimonster.top/img/button_2.png" mode="widthFix"></image>
+        <view class="formEntryBox" bindtap="goMyForm">
+            <image class="entryIcon" src="{{myFormImg}}" mode="widthFix"></image>
         </view>
     </view>
 
 </view>
+<view wx:if="{{proInfoWindow}}" class="indexFixed"></view>

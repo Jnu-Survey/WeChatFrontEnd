@@ -1,0 +1,26 @@
+<!--pages/create-form/create-form.wxml-->
+<import src="../../../templates/published/form-banner"></import>
+<import src="../../../templates/published/form-desc.wxml"></import>
+<view class="page">
+    <form bind:submit="formsubmit">
+            <!-- 表单标题和描述 -->
+            <view class="formHead">
+                <input type="text" name="name" placeholder="请输入表单标题" class="formTitle" value="{{form.name}}" bind:change="nameChange"/>
+                <textarea name="description" value="{{form.description}}" placeholder="请输入表单描述，如“感谢你能抽出几分钟时间填写以下内容，现在我们马上开始吧！" style="height: 150rpx;text-align: center;line-height: 40rpx;font-size: 36rpx;width: 100%;" rows="3" bind:blur="tipsChange"/>
+            </view>
+            <!-- 已经存在表单中的模块 -->
+            <view class="showField">
+                <gd-display-field bind:editField="onEditField" form="{{form}}" pcMode="{{pcMode}}" style="height: 60%;"></gd-display-field>
+            </view>
+            <view class="addQuestion" bind:tap="addField">
+                <image src="../../assets/image/add.png" class="addQuestionIcon" mode="widthFix"></image>
+                添加题目
+            </view>
+            <view class="fixed-btns">
+                <button class="preview" formType="submit"> 保存并预览 </button>
+            </view>
+    </form>
+    <!-- 选择模板 -->
+    <gd-select-field bind:fieldsBack="onFieldsBack" bind:selectField="onSelectField" showFields="{{showFields}}"></gd-select-field>
+</view>
+

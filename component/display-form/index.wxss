@@ -538,9 +538,8 @@
 }
 
 .field-title {
-    font-size: 38rpx;
-    line-height: 50rpx;
-    height: 50rpx;
+    font-size: 40rpx;
+    line-height: 45rpx;
     color: #000;
     font-weight: 600;
 }
@@ -652,9 +651,12 @@ image {
   margin-top: 25rpx
 }
 
-/* .section:first-child {
-  margin-top: 12px
-} */
+.des_content {
+    font-size: 34rpx;
+    margin-top: 20rpx;
+    color: #716d6d;
+    text-align: center;
+}
 
 .star-box {
   color: #c3c9d0
@@ -667,15 +669,12 @@ image {
   margin-top: 5px
 }
 
-.form-input {
-  font-size: 30rpx;
-  padding: 0 8px
-}
-
 .form-input,
 .inline-control {
-  height: 30px;
-  line-height: 30px
+    height: 40rpx;
+    line-height: 40rpx;
+    padding: 15rpx 30rpx;
+    font-size: 32rpx;
 }
 
 .inline-control {
@@ -684,7 +683,7 @@ image {
 
 .choice-box {
   border-bottom: 1px solid #c3c9d0;
-  font-size: 14px;
+  font-size: 34rpx;
   padding: 6px 10px
 }
 
@@ -711,7 +710,12 @@ image {
 }
 
 .geo-box {
-  border: 1px solid #009aff
+    display:flex;
+    align-items:center;
+    padding:20rpx 15rpx;
+    border: 1px solid #009aff;
+    font-size: 32rpx;
+    color: #009aff;
 }
 
 .hidden {
@@ -741,9 +745,9 @@ image {
 }
 
 .filed-image {
-  height: 80px;
+  height: 100rpx;
   margin: 10px 10px 10px 0;
-  width: 80px
+  width: 100rpx
 }
 
 .attachment-remove-box,
